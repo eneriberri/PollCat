@@ -8,7 +8,7 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.new(params[:poll])
     if @poll.save
-      redirect_to new_user_poll_url(params[:user_id])
+      redirect_to user_polls_url(current_user)
     else
       render :json => @poll.errors.full_messages
     end
@@ -22,9 +22,8 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find(params[:id])
-    @answer_choices = Answer.where('poll_id = @poll.id')
 
-    render poll_url(@poll)
+    render :json => @poll.to_json(:include => :answers)
   end
 
   def index

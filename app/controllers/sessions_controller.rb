@@ -1,5 +1,4 @@
 class SessionsController < ApplicationController
-  before_filter :require_current_user, :only => [:destroy]
 
   def new
     render :new
@@ -11,11 +10,11 @@ class SessionsController < ApplicationController
             params[:user][:password]
             )
 
-    if @user
+    if @user.nil?
+      render :json => "Credentials were wrong."
+    else
       login(@user)
       redirect_to user_url(@user.id)
-    else
-      render :json => "Credentials were wrong."
     end
   end
 

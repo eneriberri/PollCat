@@ -1,5 +1,6 @@
 <h1>Create Poll</h1>
 <form action="<%= user_polls_url %>" method="post" accept-charset="utf-8">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="poll[user_id]" value="<%= params[:user_id] %>">
   <label for="your_question">Your Question</label>
   <input type="text" name="poll[question]" value="" id="your_question">
