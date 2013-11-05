@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
   before_filter :require_current_user, :only => [:destroy]
 
   def new
-
+    render :new
   end
 
   def create
@@ -12,7 +12,7 @@ class SessionsController < ApplicationController
             )
 
     if @user
-      session[:session_token] = @user.session_token
+      login(@user)
       redirect_to user_url(@user.id)
     else
       render :json => "Credentials were wrong."

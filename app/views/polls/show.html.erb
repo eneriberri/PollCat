@@ -1,0 +1,7 @@
+<h1><%= @poll.question %></h1>
+Type: <%= @poll.type %>
+<br>
+<% @answer_choices.each_with_index do |i, answer| %>
+  Answer Choice <%= i %>: <%= answer.body %>
+  <br>
+<% end %>

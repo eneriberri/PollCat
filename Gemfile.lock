@@ -30,6 +30,11 @@ GEM
       multi_json (~> 1.0)
     arel (3.0.2)
     bcrypt-ruby (3.1.2)
+    better_errors (1.0.1)
+      coderay (>= 1.0.0)
+      erubis (>= 2.6.6)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.0.4)
     coderay (1.0.9)
     coffee-rails (3.2.2)
@@ -39,6 +44,7 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
+    debug_inspector (0.0.2)
     erubis (2.7.0)
     execjs (2.0.2)
     hike (1.2.3)
@@ -113,6 +119,8 @@ PLATFORMS
 
 DEPENDENCIES
   bcrypt-ruby
+  better_errors
+  binding_of_caller
   coffee-rails (~> 3.2.1)
   jquery-rails
   pry-rails
