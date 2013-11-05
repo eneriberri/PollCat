@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  attr_accessible :username, :password_digest
+  attr_accessible :username, :password
   attr_reader :password
 
   before_validation :ensure_session_token
