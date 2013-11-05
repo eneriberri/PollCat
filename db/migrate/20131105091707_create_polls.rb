@@ -11,6 +11,7 @@ class CreatePolls < ActiveRecord::Migration
 
     add_index :polls, :question
     add_index :polls, :user_id
+    add_index :polls, :open
 
   end
 end

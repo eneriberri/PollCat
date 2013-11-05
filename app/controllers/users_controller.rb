@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
-
   def new
-
+    render :new
   end
 
   def create
@@ -19,5 +18,4 @@ class UsersController < ApplicationController
 
     render :show
   end
-
 end
