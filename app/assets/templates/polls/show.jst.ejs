@@ -1,2 +1,6 @@
-<h1>Poll Index</h1>
-<%= poll.escape("question") %>
+<h2><%= poll.escape("question") %></h2>
+<br>
+<% poll.get("answers").each(function(answer) { %>
+  <%= answer.attributes.body %>
+  <br>
+<% }); %>

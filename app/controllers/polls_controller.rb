@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_filter :require_current_user, :only => [:edit, :update, :destroy]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy, :new]
 
   def new
     render :new
@@ -7,6 +7,8 @@ class PollsController < ApplicationController
 
   def create
     @poll = Poll.new(params[:poll])
+    @poll.answers.new(params[:answers].values)
+
     if @poll.save
       render :json => @poll
       #redirect_to polls_url
@@ -23,6 +25,7 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find(params[:id])
+    #render :show
     render :json => @poll.to_json(:include => :answers)
   end
 

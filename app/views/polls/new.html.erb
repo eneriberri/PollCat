@@ -3,7 +3,7 @@
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="poll[user_id]" value="<%= current_user.id %>">
   <label for="your_question">Your Question</label>
-  <input type="text" name="poll[question]" value="" id="your_question">
+  <input type="text" name="poll[question]" id="your_question">
   <br>
 
   <label for="type">Type</label>
@@ -13,10 +13,26 @@
   </select>
   <br>
 
-  <label for="answer_choice">Answer Choice</label>
-  <input type="text" name="answer[body]" value="" id="answer_choice">
+  <label for="answer_choice">Answer Choices</label>
+  <input type="text" name="answers[1][body]" id="answer_choice">
   <br>
+
+  <input type="text" name="answers[2][body]" id="answer_choice">
+  <span class="more-answers"></span>
+  <button type="button" id="add-answer">+</button>
+
+  <p></p>
 
 
   <p><input type="submit" value="Create Poll" class="btn btn-primary"></p>
 </form>
+
+<script>
+  $("#add-answer").on("click", function (event) {
+    console.log("hihihi");
+    //javascript date
+    var answerField = "<input type='text' name='answers[3][body]'>";
+    $(".more-answers").append(answerField);
+    }
+  );
+</script>
