@@ -4,7 +4,7 @@ window.PollCatApp = {
   Views: {},
   Routers: {},
   initialize: function() {
-    alert('Hello from Backbone!');
+    //alert('Hello from Backbone!');
 
     PollCatApp.polls = new PollCatApp.Collections.Polls();
     PollCatApp.polls.fetch({
@@ -18,6 +18,6 @@ window.PollCatApp = {
   }
 };
 
-// $(document).ready(function(){
-//   PollCatApp.initialize();
-// });
+$(document).ready(function(){
+  PollCatApp.initialize();
+});

@@ -23,7 +23,6 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find(params[:id])
-
     render :json => @poll.to_json(:include => :answers)
   end
 
