@@ -1,0 +1,1 @@
+PollCatApp.Models.Poll = Backbone.Model.extend({})

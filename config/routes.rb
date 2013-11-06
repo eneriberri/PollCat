@@ -5,4 +5,6 @@ PollCatApp::Application.routes.draw do
   resources :polls, :except => [:index, :create, :new]
 
   resource :session, :only => [:new, :create, :destroy]
+
+  root :to => "StaticPages#index"
 end
