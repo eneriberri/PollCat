@@ -4,5 +4,5 @@ class Poll < ActiveRecord::Base
   validates :question, :poll_type, :open, :user_id, :presence => true
 
   belongs_to :user
-  has_many :answers
+  has_many :answers, :dependent => :destroy
 end
