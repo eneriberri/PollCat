@@ -6,13 +6,11 @@ window.PollCatApp = {
   initialize: function() {
     alert('Hello from Backbone!');
 
-    var polls = new PollCatApp.Collections.Polls();
-
-    polls.fetch({
+    PollCatApp.polls = new PollCatApp.Collections.Polls();
+    PollCatApp.polls.fetch({
       success: function() {
         new PollCatApp.Routers.PollRouter({
-          "$rootEl": $("#content"),
-          collection: polls
+          "$rootEl": $(".content")
         });
         Backbone.history.start();
       }

@@ -8,7 +8,8 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.new(params[:poll])
     if @poll.save
-      redirect_to polls_url
+      render :json => @poll
+      #redirect_to polls_url
     else
       render :json => @poll.errors.full_messages
     end
@@ -27,7 +28,8 @@ class PollsController < ApplicationController
   end
 
   def index
-    render :index
+    @polls = Poll.all
+    render :json => @polls
   end
 
   def edit
