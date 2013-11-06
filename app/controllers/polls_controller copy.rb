@@ -8,7 +8,7 @@ class PollsController < ApplicationController
   def create
     @poll = Poll.new(params[:poll])
     if @poll.save
-      redirect_to polls_url
+      redirect_to user_polls_url(current_user)
     else
       render :json => @poll.errors.full_messages
     end
@@ -17,7 +17,7 @@ class PollsController < ApplicationController
   def destroy
     @poll = Poll.find(params[:id])
     @poll.destroy
-    redirect_to polls_url
+    redirect_to user_polls_url(current_user)
   end
 
   def show

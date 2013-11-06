@@ -6,12 +6,13 @@ window.PollCatApp = {
   initialize: function() {
     alert('Hello from Backbone!');
 
-    PollCatApp.polls = new PollCatApp.Collections.Polls();
+    var polls = new PollCatApp.Collections.Polls();
 
     polls.fetch({
       success: function() {
         new PollCatApp.Routers.PollRouter({
-          "$rootEl": $("#content");
+          "$rootEl": $("#content"),
+          collection: polls
         });
         Backbone.history.start();
       }
@@ -19,6 +20,6 @@ window.PollCatApp = {
   }
 };
 
-$(document).ready(function(){
-  PollCatApp.initialize();
-});
+// $(document).ready(function(){
+//   PollCatApp.initialize();
+// });
