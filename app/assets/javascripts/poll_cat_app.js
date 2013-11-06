@@ -5,6 +5,17 @@ window.PollCatApp = {
   Routers: {},
   initialize: function() {
     alert('Hello from Backbone!');
+
+    PollCatApp.polls = new PollCatApp.Collections.Polls();
+
+    polls.fetch({
+      success: function() {
+        new PollCatApp.Routers.PollRouter({
+          "$rootEl": $("#content");
+        });
+        Backbone.history.start();
+      }
+    });
   }
 };
 
