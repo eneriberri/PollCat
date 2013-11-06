@@ -1,6 +1,7 @@
 PollCatApp.Models.Poll = Backbone.Model.extend({
   parse: function(data) {
-    data.answers = new PollCatApp.Collections.Answers(data.answers);
+    debugger;
+    data.answers = new PollCatApp.Collections.Answers(data.answers, {parse: true});
     return data;
   }
 })
