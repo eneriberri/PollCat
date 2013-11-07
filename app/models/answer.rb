@@ -1,8 +1,7 @@
 class Answer < ActiveRecord::Base
-  attr_accessible :body, :user_id, :poll_id, :count
+  attr_accessible :body, :poll_id, :count
 
-  validates :body, :user_id, :poll_id, :count, :presence => true
+  validates :body, :presence => true #:poll_id, :count,
 
-  belongs_to :user
   belongs_to :poll
 end

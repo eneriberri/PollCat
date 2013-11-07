@@ -29,9 +29,7 @@
 
 <script>
   $("#add-answer").on("click", function (event) {
-    console.log("hihihi");
-    //javascript date
-    var answerField = "<input type='text' name='answers[3][body]'>";
+    var answerField = "<input type='text' name='answers[" + Date.now() + "][body]'>";
     $(".more-answers").append(answerField);
     }
   );
