@@ -28,4 +28,5 @@ gem 'bcrypt-ruby', :require => 'bcrypt'
 gem 'backbone-on-rails'
 gem 'ejs'
 gem 'pusher'
-
+gem 'twilio-ruby'
+gem 'sms-rb'
