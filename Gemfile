@@ -21,6 +21,7 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'debugger'
+  gem 'tunnlr_connector', :require => "tunnlr"
 end
 
 gem 'jquery-rails'
@@ -29,4 +30,5 @@ gem 'backbone-on-rails'
 gem 'ejs'
 gem 'pusher'
 gem 'twilio-ruby'
-gem 'sms-rb'
+gem 'pg'
+
