@@ -1,7 +1,6 @@
 <h2>Poll Index</h2>
 <% polls.each(function(poll) { %>
-  <%= poll.escape("question") %>
+  <% var url = "/#/polls/" + poll.id %>
+  <a href=<%= url %>><%= poll.escape("question") %></a>
   <br>
 <% }); %>
-
-<!-- <canvas id="myChart" height="450" width="450" style="width: 450px; height: 450px;"></canvas> -->

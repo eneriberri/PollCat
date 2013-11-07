@@ -1,24 +1,5 @@
 <div id="top"><center><h1>Poll Cat</h1></center></div>
 <div class="content"></div>
 <div id="footer"></div>
-<canvas id="myChart" height="450" width="450" style="width: 450px; height: 450px;"></canvas>
 
-<script>
-	var pieData = [
-			{
-				value: 50,
-				color:"#F38630"
-			},
-			{
-				value : 50,
-				color : "#E0E4CC"
-			},
-			{
-				value : 50,
-				color : "#69D2E7"
-			}
 
-		];
-var ctx = $("#myChart").get(0).getContext("2d");
-var myPie = new Chart(ctx).Pie(pieData);
-</script>
