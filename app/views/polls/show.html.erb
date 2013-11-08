@@ -1,7 +1,34 @@
+<center>
 <h1><%= @poll.question %></h1>
-Type: <%= @poll.poll_type %>
 <br>
-<% @poll.answers.each do |answer| %>
-<%= answer.body %>
+<h3>Text 281-374-4443 to vote</h3>
+
+<canvas id="myChart" height="450" width="450" style="width: 450px; height: 450px;"></canvas>
+<br>
+<% @poll.answers.each_with_index do |answer, i| %>
+<strong><%= answer.body %></strong> Text Code: <%= i+1 %>
 <br>
 <% end %>
+Message Body: <%= @message_body %>
+</center>
+
+<script>
+
+	var pieData = [
+			{
+				value: 50,
+				color:"#F38630"
+			},
+			{
+				value : 50,
+				color : "#E0E4CC"
+			},
+			{
+				value : 50,
+				color : "#69D2E7"
+			}
+
+		];
+var ctx = $("#myChart").get(0).getContext("2d");
+var myPie = new Chart(ctx).Pie(pieData);
+</script>

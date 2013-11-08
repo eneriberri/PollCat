@@ -10,5 +10,7 @@ PollCatApp::Application.routes.draw do
   get '/sendtxt', to: 'polls#send_text_message'
   post '/sendtxt', to: 'polls#send_text_message'
 
+  get '/sms', to: 'polls#receive_text_message'
+
   root :to => "StaticPages#index"
 end

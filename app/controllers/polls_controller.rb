@@ -42,8 +42,10 @@ class PollsController < ApplicationController
 
   def show
     @poll = Poll.find(params[:id])
-    #render :show
-    render :json => @poll.to_json(:include => :answers)
+    @message_body = params["Body"]
+
+    render :show
+    #render :json => @poll.to_json(:include => :answers)
   end
 
   def index
@@ -51,35 +53,17 @@ class PollsController < ApplicationController
     message_body = params["Body"]
     from_number = params["From"]
 
-    puts params
-    render :index
-    #render :json => @polls.to_json(:include => :answers)
+    puts message_body
+    #render :index
+    render :json => @polls.to_json(:include => :answers)
   end
 
-  # # Use the Twilio REST API to initiate an outgoing call
- #  def makecall
- #    if !params['number']
- #      redirect_to :json => '.', 'msg' => 'Invalid phone number'
- #      return
- #    end
- #
- #    # parameters sent to Twilio REST API
- #    data = {
- #      :from => CALLER_ID,
- #      :to => params['number'],
- #      :url => BASE_URL + '/reminder',
- #    }
- #
- #    begin
- #      client = Twilio::REST::Client.new(ACCOUNT_SID, ACCOUNT_TOKEN)
- #      client.account.calls.create data
- #    rescue StandardError => bang
- #      redirect_to :json => '.', 'msg' => "Error #{bang}"
- #      return
- #    end
- #
- #    redirect_to :json => '', 'msg' => "Calling #{params['number']}..."
- #  end
+  def receive_text_message
+    @message_body = params["Body"]
+    @from_number = params["From"]
+
+    render :json => @message_body.to_json
+  end
 
   def edit
     render :edit

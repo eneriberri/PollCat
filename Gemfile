@@ -21,7 +21,6 @@ group :development do
   gem 'better_errors'
   gem 'binding_of_caller'
   gem 'debugger'
-  gem 'tunnlr_connector', :require => "tunnlr"
 end
 
 gem 'jquery-rails'
