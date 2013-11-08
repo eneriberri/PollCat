@@ -6,33 +6,32 @@
 <% }); %>
 
 <ul id="votes">
-<% votes.each(function(vote) { %>
-  <li><%= vote.escape("msg") %></li>
-<% }) %>
+
 </ul>
 
-<canvas id="myChart" height="450" width="450" style="width: 450px; height: 450px;"></canvas>
-
-
+<div id="chart">
+  <canvas id="myChart" height="450" width="450" style="width: 450px; height: 450px;"></canvas>
+</div>
 
 <script>
 var pusher = new Pusher('280047e8dcfd93f78f89');
 var channel = pusher.subscribe('vote_channel');
+var votevalue = 0;
 channel.bind('new_vote', function(data) {
-  $('#votes').append("<li>jquery appending: " + data.message + "</li>");
-});
+  $('#votes').append("<li>You voted: " + data.message + "</li>");
+  votevalue++;
 
   var pieData = [
       {
-        value: 50,
+        value: votevalue,
         color:"#F38630"
       },
       {
-        value : 50,
+        value : 1,
         color : "#E0E4CC"
       },
       {
-        value : 50,
+        value : 1,
         color : "#69D2E7"
       }
 
@@ -41,4 +40,8 @@ channel.bind('new_vote', function(data) {
 
 var ctx = $("#myChart").get(0).getContext("2d");
 var myPie = new Chart(ctx).Pie(pieData);
+});
+
+
+
 </script>

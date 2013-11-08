@@ -7,10 +7,6 @@ PollCatApp::Application.routes.draw do
 
   resources :votes, :only => [:index]
 
-  get '/makecall', to: 'polls#makecall'
-  post '/makecall', to: 'polls#makecall'
-
-  get '/sendtxt', to: 'polls#send_text_message'
   post '/sendtxt', to: 'polls#send_text_message'
 
   #configuration under twilio

@@ -9,9 +9,9 @@ window.PollCatApp = {
     PollCatApp.polls = new PollCatApp.Collections.Polls();
     PollCatApp.votes = new PollCatApp.Collections.Votes();
 
-    PollCatApp.votes.fetch({
+    PollCatApp.polls.fetch({
       success: function() {
-        PollCatApp.polls.fetch({
+        PollCatApp.votes.fetch({
           success: function() {
             new PollCatApp.Routers.PollRouter({
               "$rootEl": $(".content")
