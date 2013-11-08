@@ -14,60 +14,48 @@
 <canvas id="myChart" height="450" width="450" style="width: 450px; height: 450px;"></canvas>
 
 <script>
-var pusher = new Pusher('280047e8dcfd93f78f89');
-var channel = pusher.subscribe('vote_channel');
+  var numAnswers = $("li").size();
+  var voteFreq = {};
+  var pieData = [];
+  var colors = ["#F38630", "#E0E4CC", "#69D2E7"];
 
+  var pusher = new Pusher('280047e8dcfd93f78f89');
+  var channel = pusher.subscribe('vote_channel');
+  channel.bind('new_vote', function(data) {
+    $('#votes').append("<li>You voted: " + data.message + "</li>");
+    // var pieData2 = [ {
+    //       value: votevalue,
+    //       color:"#F38630"
+    //     }, {
+    //       value : 1,
+    //       color : "#E0E4CC"
+    //     }, {
+    //       value : 1,
+    //       color : "#69D2E7"
+    //     }
+    //   ];
+    pieData.length = 0;
 
-var numAnswers = $("li").size();
-var voteCount = 0;
-var voteCount2 = 2;
-var voteFreq = {};
-var pieData = [];
-var colors = ["#F38630", "#E0E4CC", "#69D2E7"];
-
-
-channel.bind('new_vote', function(data) {
-  $('#votes').append("<li>You voted: " + data.message + "</li>");
-
-  voteCount++;
-  // var pieData2 = [ {
-  //       value: votevalue,
-  //       color:"#F38630"
-  //     }, {
-  //       value : 1,
-  //       color : "#E0E4CC"
-  //     }, {
-  //       value : 1,
-  //       color : "#69D2E7"
-  //     }
-  //   ];
-  pieData.length = 0;
-
-  if (voteFreq[data.message]) {
-    voteFreq[data.message]++;
-  }
-  else {
-    console.log("else block");
-    voteFreq[data.message] = 1;
-  }
-
-  for(var i = 1; i <= numAnswers; i++) {
-    if(!voteFreq[i]) {
-      voteFreq[i] = 1;
+    if (voteFreq[data.message]) {
+      voteFreq[data.message]++;
     }
-  }
+    else {
+      voteFreq[data.message] = 1;
+    }
 
+    for(var i = 1; i <= numAnswers; i++) {
+      if(!voteFreq[i]) {
+        voteFreq[i] = 0;
+      }
+    }
 
+    for(var i = 0; i < numAnswers; i++) {
+      console.log("voteFreq at " + (i+1) + " " + voteFreq[i+1]);
+      pieData.push({ value: voteFreq[i+1], color: colors[i] });
+    }
 
-  for(var i = 0; i < numAnswers; i++) {
-    console.log("voteFreq at " + (i+1) + " " + voteFreq[i+1]);
-    pieData.push({ value: voteFreq[i+1], color: colors[i] });
-  }
-
-
-  var ctx = $("#myChart").get(0).getContext("2d");
-  var myPie = new Chart(ctx).Pie(pieData);
-});
-
+    var ctx = $("#myChart").get(0).getContext("2d");
+    var myPie = new Chart(ctx).Pie(pieData);
+  });
 
 </script>
