@@ -3,7 +3,8 @@
 
 <ul id="answerss">
   <% poll.get("answers").each(function(answer) { %>
-    <li><%= answer.attributes.body %> Text Code: <%= textCode+=1 %></li>
+    <% textCode+=1 %>
+    <li><%= answer.attributes.body %> Text Code: <%= textCode+""+poll.id %></li>
   <% }); %>
 </ul>
 
@@ -23,34 +24,22 @@
   var channel = pusher.subscribe('vote_channel');
   channel.bind('new_vote', function(data) {
     $('#votes').append("<li>You voted: " + data.message + "</li>");
-    // var pieData2 = [ {
-    //       value: votevalue,
-    //       color:"#F38630"
-    //     }, {
-    //       value : 1,
-    //       color : "#E0E4CC"
-    //     }, {
-    //       value : 1,
-    //       color : "#69D2E7"
-    //     }
-    //   ];
+
     pieData.length = 0;
 
-    if (voteFreq[data.message]) {
-      voteFreq[data.message]++;
-    }
-    else {
-      voteFreq[data.message] = 1;
-    }
+    var vote = data.message.substring(0,1);
+    console.log(vote);
+    if (voteFreq[vote])
+      voteFreq[vote]++;
+    else
+      voteFreq[vote] = 1;
 
     for(var i = 1; i <= numAnswers; i++) {
-      if(!voteFreq[i]) {
+      if(!voteFreq[i])
         voteFreq[i] = 0;
-      }
     }
 
     for(var i = 0; i < numAnswers; i++) {
-      console.log("voteFreq at " + (i+1) + " " + voteFreq[i+1]);
       pieData.push({ value: voteFreq[i+1], color: colors[i] });
     }
 

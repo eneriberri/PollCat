@@ -5,9 +5,10 @@ class VotesController < ApplicationController
   end
 
   def receive_txt
-    msg = params["Body"]
+    msg = params["Body"][0]
+    poll_id = params["Body"][1..-1]
     from_number = params["From"]
-    Vote.create({msg: msg, from: from_number})
+    Vote.create({msg: msg, from: from_number, poll_id: poll_id})
 
     Pusher['vote_channel'].trigger('new_vote', {
       message: msg
