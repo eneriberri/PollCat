@@ -8,6 +8,7 @@ window.PollCatApp = {
 
     PollCatApp.polls = new PollCatApp.Collections.Polls();
     PollCatApp.votes = new PollCatApp.Collections.Votes();
+    PollCatApp.textCode = 0;
 
     PollCatApp.polls.fetch({
       success: function() {

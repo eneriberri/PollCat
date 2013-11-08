@@ -17,7 +17,9 @@ PollCatApp.Routers.PollRouter = Backbone.Router.extend({
 
   show: function(id) {
     var poll = PollCatApp.polls.get(id);
-    var showView = new PollCatApp.Views.PollShow( { model: poll, collection: PollCatApp.votes } );
+    var showView = new PollCatApp.Views.PollShow( { model: poll,
+                                                    collection: PollCatApp.votes,
+                                                    textCode: PollCatApp.textCode } );
     this.$rootEl.html(showView.render().$el);
   },
 

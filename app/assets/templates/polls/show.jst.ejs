@@ -1,47 +1,54 @@
 <h2><%= poll.escape("question") %></h2>
 <br>
-<% poll.get("answers").each(function(answer) { %>
-  <%= answer.attributes.body %>
-  <br>
-<% }); %>
 
-<ul id="votes">
-
+<ul id="answerss">
+  <% poll.get("answers").each(function(answer) { %>
+    <li><%= answer.attributes.body %> Text Code: <%= textCode+=1 %></li>
+  <% }); %>
 </ul>
 
-<div id="chart">
-  <canvas id="myChart" height="450" width="450" style="width: 450px; height: 450px;"></canvas>
-</div>
+<ul id="votes"></ul>
+
+<canvas id="myChart" height="450" width="450" style="width: 450px; height: 450px;"></canvas>
 
 <script>
 var pusher = new Pusher('280047e8dcfd93f78f89');
 var channel = pusher.subscribe('vote_channel');
+
+
+var numAnswers = $("li").size();
 var votevalue = 0;
+var voteArr = [];
+var pieData = [];
+var colors = ["#F38630", "#E0E4CC", "#69D2E7"];
+
+
 channel.bind('new_vote', function(data) {
   $('#votes').append("<li>You voted: " + data.message + "</li>");
+
   votevalue++;
 
-  var pieData = [
-      {
-        value: votevalue,
-        color:"#F38630"
-      },
-      {
-        value : 1,
-        color : "#E0E4CC"
-      },
-      {
-        value : 1,
-        color : "#69D2E7"
-      }
+  // var pieData2 = [ {
+  //       value: votevalue,
+  //       color:"#F38630"
+  //     }, {
+  //       value : 1,
+  //       color : "#E0E4CC"
+  //     }, {
+  //       value : 1,
+  //       color : "#69D2E7"
+  //     }
+  //   ];
 
-    ];
+  for(var i = 0; i < numAnswers; i++) {
+    voteArr.push(0);
+    pieData.push({ value: 1, color: colors[i] });
+  }
 
 
-var ctx = $("#myChart").get(0).getContext("2d");
-var myPie = new Chart(ctx).Pie(pieData);
+  var ctx = $("#myChart").get(0).getContext("2d");
+  var myPie = new Chart(ctx).Pie(pieData);
 });
-
 
 
 </script>
