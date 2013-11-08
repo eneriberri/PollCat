@@ -7,14 +7,23 @@ window.PollCatApp = {
     //alert('Hello from Backbone!');
 
     PollCatApp.polls = new PollCatApp.Collections.Polls();
-    PollCatApp.polls.fetch({
+    PollCatApp.votes = new PollCatApp.Collections.Votes();
+
+    PollCatApp.votes.fetch({
       success: function() {
-        new PollCatApp.Routers.PollRouter({
-          "$rootEl": $(".content")
+        PollCatApp.polls.fetch({
+          success: function() {
+            new PollCatApp.Routers.PollRouter({
+              "$rootEl": $(".content")
+            });
+            Backbone.history.start();
+          }
         });
-        Backbone.history.start();
+
       }
     });
+
+
   }
 };
 

@@ -61,7 +61,7 @@ class PollsController < ApplicationController
   def receive_text_message
     @message_body = params["Body"]
     @from_number = params["From"]
-
+    debugger
     render :json => @message_body.to_json
   end
 

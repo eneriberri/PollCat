@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131107004414) do
+ActiveRecord::Schema.define(:version => 20131108003636) do
 
   create_table "answers", :force => true do |t|
     t.string   "body",                      :null => false
@@ -46,5 +46,12 @@ ActiveRecord::Schema.define(:version => 20131107004414) do
 
   add_index "users", ["session_token"], :name => "index_users_on_session_token", :unique => true
   add_index "users", ["username"], :name => "index_users_on_username", :unique => true
+
+  create_table "votes", :force => true do |t|
+    t.string   "msg"
+    t.string   "from"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
 
 end
