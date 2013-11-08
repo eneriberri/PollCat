@@ -14,6 +14,7 @@
 //= require jquery_ujs
 //= require bootstrap.min
 //= require Chart
+//= require pusher.min
 //= require underscore
 //= require backbone
 //= require poll_cat_app

@@ -7,7 +7,12 @@ class VotesController < ApplicationController
   def receive_txt
     msg = params["Body"]
     from_number = params["From"]
-    puts "before create"
     Vote.create({msg: msg, from: from_number})
+
+    Pusher['vote_channel'].trigger('new_vote', {
+      message: msg
+    })
+
+    render :json => "success!"
   end
 end

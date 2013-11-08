@@ -49,20 +49,7 @@ class PollsController < ApplicationController
   end
 
   def index
-    @polls = Poll.all
-    message_body = params["Body"]
-    from_number = params["From"]
-
-    puts message_body
-    #render :index
-    render :json => @polls.to_json(:include => :answers)
-  end
-
-  def receive_text_message
-    @message_body = params["Body"]
-    @from_number = params["From"]
-    debugger
-    render :json => @message_body.to_json
+    render :json => Poll.includes(:answers).all, :include => :answers
   end
 
   def edit

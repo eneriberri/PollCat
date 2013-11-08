@@ -13,6 +13,7 @@ PollCatApp::Application.routes.draw do
   get '/sendtxt', to: 'polls#send_text_message'
   post '/sendtxt', to: 'polls#send_text_message'
 
+  #configuration under twilio
   get '/sms', to: 'votes#receive_txt'
   post '/sms', to: 'votes#receive_txt'
 
