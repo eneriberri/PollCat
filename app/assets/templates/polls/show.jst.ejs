@@ -1,7 +1,7 @@
 <h2><%= poll.escape("question") %></h2>
 <br>
 
-<ul id="answerss">
+<ul id="answers">
   <% poll.get("answers").each(function(answer) { %>
     <% textCode+=1 %>
     <li><%= answer.attributes.body %> Text Code: <%= textCode+""+poll.id %></li>
@@ -14,33 +14,33 @@
 
 <canvas id="myChart" height="450" width="450" style="width: 450px; height: 450px;"></canvas>
 
+
 <script>
   var numAnswers = $("li").size();
-  var voteFreq = {};
-  var pieData = [];
-  var colors = ["#F38630", "#E0E4CC", "#69D2E7"];
-
   var pusher = new Pusher('280047e8dcfd93f78f89');
   var channel = pusher.subscribe('vote_channel');
+
+
   channel.bind('new_vote', function(data) {
-    $('#votes').append("<li>You voted: " + data.message + "</li>");
+    $('#votes').append("<li>You voted: " + data.message+""+data.poll_id + "</li>");
+    var pieData = [];
+    var colors = ["#F38630", "#E0E4CC", "#69D2E7"];
+    console.log("data votes");
+    console.log(data.votes);
 
-    pieData.length = 0;
-
-    var vote = data.message.substring(0,1);
-    console.log(vote);
-    if (voteFreq[vote])
-      voteFreq[vote]++;
-    else
-      voteFreq[vote] = 1;
-
-    for(var i = 1; i <= numAnswers; i++) {
-      if(!voteFreq[i])
-        voteFreq[i] = 0;
+    //populate vote freq hash with default values
+    for(var i = 0; i < numAnswers; i++) {
+      if(data.votes[i+1] > 0) {
+        data.votes[i+1]++;
+      }
+      else {
+        data.votes[i+1] = 0;
+      }
     }
 
+
     for(var i = 0; i < numAnswers; i++) {
-      pieData.push({ value: voteFreq[i+1], color: colors[i] });
+      pieData.push({ value: data.votes[i+1], color: colors[i] });
     }
 
     var ctx = $("#myChart").get(0).getContext("2d");

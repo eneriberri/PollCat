@@ -17,9 +17,22 @@ PollCatApp.Routers.PollRouter = Backbone.Router.extend({
 
   show: function(id) {
     var poll = PollCatApp.polls.get(id);
+    var votes = PollCatApp.votes.where({poll_id: parseInt(id) });
+    console.log(votes);
+    var vote_freq = {};
+    for(var i = 0; i < votes.length; i++) {
+      var vote = parseInt(votes[i].attributes["msg"]);
+      if(vote_freq[vote] >= 0)
+        vote_freq[vote]++;
+      else
+        vote_freq[vote] = 0;
+    }
+
     var showView = new PollCatApp.Views.PollShow( { model: poll,
                                                     collection: PollCatApp.votes,
-                                                    textCode: PollCatApp.textCode } );
+                                                    textCode: PollCatApp.textCode,
+                                                    voteFreq: vote_freq } );
+
     this.$rootEl.html(showView.render().$el);
   },
 
