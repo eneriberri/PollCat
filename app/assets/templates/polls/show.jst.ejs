@@ -25,22 +25,23 @@
     $('#votes').append("<li>You voted: " + data.message+""+data.poll_id + "</li>");
     var pieData = [];
     var colors = ["#F38630", "#E0E4CC", "#69D2E7"];
-    console.log("data votes");
+    console.log("data votes before");
     console.log(data.votes);
 
     //populate vote freq hash with default values
     for(var i = 0; i < numAnswers; i++) {
-      if(typeof data.votes[i+1] != 'undefined') {
-        data.votes[i+1]++;
-      }
-      else {
+      if(typeof data.votes[i+1] === 'undefined')
         data.votes[i+1] = 0;
-      }
     }
+
+    console.log("data votes after");
+    console.log(data.votes);
 
     for(var i = 0; i < numAnswers; i++) {
       pieData.push({ value: data.votes[i+1], color: colors[i] });
     }
+    console.log("pie data from show template");
+    console.log(pieData);
 
     var ctx = $("#myChart").get(0).getContext("2d");
     var myPie = new Chart(ctx).Pie(pieData);
