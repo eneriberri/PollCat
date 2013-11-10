@@ -14,11 +14,58 @@
  */
 
 #sticky_footer {
-    position: fixed;
+    position:fixed;
     bottom: 0px;
     left: 0px;
     width: 100%;
     background-color: #1A1A1A;
     color: white;
-
 }
+
+a.btn {
+	display: inline-block;
+	color: #666;
+	background-color: #eee;
+	text-transform: uppercase;
+	letter-spacing: 2px;
+	font-size: 12px;
+	padding: 10px 30px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border: 1px solid rgba(0,0,0,0.5);
+	border-bottom-width: 3px;
+}
+
+a.btn:hover {
+	background-color: #e3e3e3;
+	border-color: #1A1A1A;
+  color: black;
+}
+
+a.btn:active {
+	background-color: #CCC;
+	border-color: rgba(0,0,0,0.9);
+  color: black;
+}
+
+/*html, body {
+  height: 100%;
+}*/
+
+/*$footerHeight: 5em;
+
+#container {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto ($footerHeight * -1);
+}
+#container > *:last-child {
+    padding-bottom: $footerHeight;
+}
+#sticky_footer {
+    height: $footerHeight;
+    background-color: #1A1A1A;
+    color: white;
+}*/
