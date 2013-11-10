@@ -1,19 +1,33 @@
 <div class="row">
-<h2><%= poll.escape("question") %></h2>
-<br>
 
-<ul id="answers">
-  <% poll.get("answers").each(function(answer) { %>
-    <% textCode+=1 %>
-    <li><%= answer.attributes.body %> Text Code: <%= textCode+""+poll.id %></li>
-  <% }); %>
-</ul>
+  <div class="row">
+    <div class="large-6 columns">
+      <h1><%= poll.escape("question") %></h1>
+      <h3 class="subheader">Text (281) 374-4443 to vote.</h3>
+      <br>
+    </div>
 
-<ul id="votes">
+    <div class="large-6 columns">
+      <p></p>
+      <ul id="answers" class="no-bullet">
+        <% poll.get("answers").each(function(answer) { %>
+          <% textCode+=1 %>
+          <li><h3><%= answer.attributes.body %>.
+            <small>Text Code: <%= textCode+""+poll.id %></small></h3> </li>
 
-</ul>
+        <% }); %>
+      </ul>
+    </div>
+  </div>
 
-<canvas id="myChart" height="450" width="450" style="width: 450px; height: 450px;"></canvas>
+
+  <canvas id="myChart" height="410" width="410" style="width: 450px; height: 450px;"></canvas>
+
+
+
+  <ul id="votes">
+
+  </ul>
 </div>
 
 <script>
