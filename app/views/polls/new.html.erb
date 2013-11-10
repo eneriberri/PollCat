@@ -6,30 +6,29 @@
     <div class="row">
       <label for="your_question">Your Question</label>
       <input type="text" name="poll[question]" id="your_question" placeholder="e.g. Do you like me?">
-    </div>
-    <br>
 
-    <div class="row">
-    <label for="type">Type</label>
-    <select name="poll[poll_type]" id="type">
-    <option value="pie">Pie Chart</option>
-    <option value="bar">Bar Graph</option>
-    </select>
-    </row>
-    <br>
+      <br>
 
-    <div class="row">
-    <label for="answer_choice">Answer Choices</label>
-    <input type="text" name="answers[1][body]" id="answer_choice" placeholder="Yes!">
-    <input type="text" name="answers[2][body]" placeholder="Yes.">
-    </row>
-    <p class="more-answers"></p>
-    <button type="button" id="add-answer" class="tiny button">+</button>
-    <button type="button" id="remove-answer" class="tiny button">-</button>
-    <p></p>
+      <label for="type">Type</label>
+      <select name="poll[poll_type]" id="type">
+      <option value="pie">Pie Chart</option>
+      <option value="bar">Bar Graph</option>
+      </select>
 
-    <div class="row">
-    <p><input type="submit" value="Create Poll" class="medium button"></p>
+      <br>
+
+      <label for="answer_choice">Answer Choices</label>
+      <input type="text" name="answers[1][body]" id="answer_choice" placeholder="Yes!">
+      <input type="text" name="answers[2][body]" placeholder="Yes.">
+
+
+      <p class="more-answers"></p>
+      <button type="button" id="add-answer" class="tiny button">+</button>
+      <button type="button" id="remove-answer" class="tiny button">-</button>
+      <p></p>
+
+
+      <p><input type="submit" value="Create Poll" class="medium button"></p>
     </row>
 </form>
 
