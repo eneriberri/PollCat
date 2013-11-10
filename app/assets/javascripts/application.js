@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require bootstrap.min
+//= require foundation
 //= require Chart
 //= require pusher.min
 //= require underscore
@@ -24,3 +24,5 @@
 //= require_tree ./views
 //= require_tree ./routers
 //= require_tree .
+
+$(function(){ $(document).foundation(); });
