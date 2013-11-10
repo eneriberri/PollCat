@@ -30,4 +30,3 @@ gem 'ejs'
 gem 'pusher'
 gem 'twilio-ruby'
 gem 'pg'
-

@@ -18,7 +18,6 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   },
 
   renderChart: function() {
-
     var votes = this.collection.where({ poll_id: parseInt(this.id) });
     console.log(this.voteFreq);
 

@@ -1,9 +1,9 @@
 <h1>Create Poll</h1>
-<form action="<%= polls_url %>" method="post" accept-charset="utf-8">
+<form action="<%= polls_url %>" method="post" accept-charset="utf-8" class="custom">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="poll[user_id]" value="<%= current_user.id %>">
   <label for="your_question">Your Question</label>
-  <input type="text" name="poll[question]" id="your_question">
+  <input type="text" name="poll[question]" id="your_question" placeholder="e.g. Do you like me?">
   <br>
 
   <label for="type">Type</label>
@@ -14,10 +14,10 @@
   <br>
 
   <label for="answer_choice">Answer Choices</label>
-  <input type="text" name="answers[1][body]" id="answer_choice">
+  <input type="text" name="answers[1][body]" id="answer_choice" placeholder="Yes">
   <br>
 
-  <input type="text" name="answers[2][body]" id="answer_choice">
+  <input type="text" name="answers[2][body]" id="answer_choice" placeholder="Yesss">
   <span class="more-answers"></span>
   <button type="button" id="add-answer">+</button>
 
