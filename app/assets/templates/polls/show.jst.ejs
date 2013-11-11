@@ -11,11 +11,15 @@
     <div class="large-6 columns">
       <p></p>
       <ul id="answers" class="no-bullet">
+        <% var i = 0 %>
         <% poll.get("answers").each(function(answer) { %>
+          <div class="square" style="background-color: <%= PollCatApp.COLORS[i] %>;"></div>
           <% textCode+=1 %>
-          <li><h3><%= answer.attributes.body %>.
-            <small>Text Code: <%= textCode+""+poll.id %></small></h3> </li>
-
+          <li>
+            <h3><%= answer.attributes.body %>.
+            <small>Text Code: <%= textCode+""+poll.id %></small></h3>
+          </li>
+            <% i++ %>
         <% }); %>
       </ul>
       <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ante orci, posuere a vehicula a, fermentum et ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mattis eget dui at pharetra. Vivamus malesuada nisl nec risus bibendum viverra. Proin nec ullamcorper diam, ut mollis turpis. In iaculis et mi nec vulputate. Quisque non nulla ac nibh volutpat aliquam ac sed diam. In fermentum commodo libero, sed iaculis mi mattis eu. Suspendisse semper eleifend ligula, eget pretium augue. Duis id lobortis augue. Quisque tristique bibendum arcu non hendrerit. Donec eu lacinia dolor, ac commodo erat. Phasellus tempor feugiat adipiscing. Nam vestibulum, purus at placerat vulputate, metus tellus tincidunt leo, ac mollis risus diam nec sapien.
@@ -26,6 +30,8 @@
       </div>
     </div>
   </div>
+
+
 
   <ul id="votes"></ul>
 </div>
@@ -53,7 +59,7 @@
     console.log(data.votes);
 
     for(var i = 0; i < numAnswers; i++) {
-      pieData.push({ value: data.votes[i+1], color: colors[i] });
+      pieData.push({ value: data.votes[i+1], color: PollCatApp.COLORS[i] });
     }
     console.log("pie data from show template");
     console.log(pieData);
