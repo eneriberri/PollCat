@@ -6,6 +6,10 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     this.voteFreq = options.voteFreq;
   },
 
+  events: {
+    "click .edit": "editPoll"
+  },
+
   render: function() {
 
     var renderedHTML = this.template({ poll: this.model,
@@ -32,6 +36,13 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
       var ctx = this.$el.find('#myChart').get(0).getContext("2d");
       new Chart(ctx).Pie(pieData);
     }
+  },
+
+  editPoll: function(event) {
+    var currentQues = $("#poll-ques").text();
+    var input = "<input name='poll[question]' id='poll-ques' placeholder='" + currentQues + "' class='poll-edit-ques'></input>"
+    $("#poll-ques").replaceWith(input)
+    $("#poll-ques").focus();
   }
 
 

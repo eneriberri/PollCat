@@ -45,7 +45,7 @@ PollCatApp.Routers.PollRouter = Backbone.Router.extend({
 
   edit: function(id) {
     var poll = PollCatApp.polls.get(id);
-    var editView = new PollCatApp.Views.PollEdit( { model: poll } );
+    var editView = new PollCatApp.Views.PollEdit( { model: poll, collection: PollCatApp.votes, } );
     this.$rootEl.html(editView.render().$el);
   },
 
