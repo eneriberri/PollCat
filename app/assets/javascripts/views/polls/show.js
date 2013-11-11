@@ -7,17 +7,18 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   },
 
   events: {
-    "click .edit": "editPoll"
+    "click .edit": "editPoll",
+    "click .save": "savePoll"
   },
 
   render: function() {
-
     var renderedHTML = this.template({ poll: this.model,
                                        votes: this.collection,
                                        textCode: this.textCode });
     this.$el.html(renderedHTML);
+    //draws initial chart and on refresh
+    this.renderChart();
 
-    this.renderChart(); //draws initial chart and on refresh
     return this;
   },
 
@@ -39,11 +40,31 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   },
 
   editPoll: function(event) {
-    var currentQues = $("#poll-ques").text();
-    var input = "<input name='poll[question]' id='poll-ques' placeholder='" + currentQues + "' class='poll-edit-ques'></input>"
-    $("#poll-ques").replaceWith(input)
-    $("#poll-ques").focus();
-  }
+    this.editQues();
 
+    var $btn = $(".edit");
+    $btn.text("Save Poll");
+    $btn.removeClass('edit').addClass('success save');
+  },
+
+  editQues: function() {
+    var currentQues = $("#poll-ques").text();
+
+    if(currentQues.length >= 18) {
+      currentQues = currentQues.substring(0, 14) + "...";
+    }
+
+    var input = "<input name='poll[question]' id='poll-ques' placeholder='"
+                + currentQues + "' class='poll-edit-ques'></input>";
+
+    $("#poll-ques").replaceWith(input);
+    $("#poll-ques").focus();
+  },
+
+  savePoll: function() {
+    var $btn = $(".success");
+    $btn.text("Edit Poll");
+    $btn.removeClass('success save').addClass('edit');
+  }
 
 })
