@@ -1,21 +1,9 @@
 <br>
-<!-- <div class="row">
-  <div class="small-6 large-5 columns"></div>
-  <div class="small-6 large-7 columns">
-    <h1>Poll Cat</h1>
-  </div>
-</div> -->
-
-<!-- <div class="row">
-  <div class="small-3 small-centered columns"><h1>live audience polling.</h1></div>
-</div> -->
-
 <div class="row">
   <div class="small-6 large-5 columns"><h1>live audience polling.</h1></div>
   <div class="small-6 large-7 columns">
     <br>
 
-    <!-- <p><a href="#" class="btn">Create a poll</a></p> -->
     <h4>it'll be the easiest thing you do today.</h4>
     <a href="/polls/new">
       <button type="button" class="medium button expand noshadow">Create a poll</button>
@@ -29,10 +17,8 @@
 </div>
 
 <div class="row">
-  <br>
-  <p></p>
-  <br>
-  <p></p>
+  <br><p></p>
+  <br><p></p>
   <h3>Step 1. <small>Ask your audience a question with the Poll Cat app.</small></h3>
   <h3>Step 2. <small>Audience answers in real time using mobile phones or the web browser.</small></h3>
   <h3>Step 3. <small>You're done. See your response live.</small></h3>
@@ -71,29 +57,26 @@
 
 
 <script>
-//neon yellow ? , red, cream, bright blue, black, deep bright orange, turquoise bright blue => #69D2E7
-var colors = ["#C3E86B", "#FF4242", "#E1EDB9", "#00B4FF", "#000000", "#FA6900", "#E0E4CC", "#69D2E7", "#D34017", "#FC354C"]
-
 		var doughnutData = [
 				{
 					value: 30,
-					color: colors[2] //"#F7464A"
+					color: PollCatApp.COLORS[0] //"#F7464A"
 				},
 				{
 					value : 50,
-					color : colors[0] //"#46BFBD"
+					color : PollCatApp.COLORS[1] //"#46BFBD"
 				},
 				{
 					value : 100,
-					color : colors[1] // "#FDB45C"
+					color : PollCatApp.COLORS[2] // "#FDB45C"
 				},
 				{
 					value : 50,
-					color : "#69D2E7" //"#949FB1"
+					color : PollCatApp.COLORS[3] //"#949FB1"
 				},
 				{
 					value : 120,
-					color : colors[4] //"#4D5360"
+					color : PollCatApp.COLORS[5] //"#4D5360"
 				}
 
 			];

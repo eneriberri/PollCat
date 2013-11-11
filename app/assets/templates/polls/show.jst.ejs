@@ -22,18 +22,23 @@
             <% i++ %>
         <% }); %>
       </ul>
-      <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ante orci, posuere a vehicula a, fermentum et ipsum. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla mattis eget dui at pharetra. Vivamus malesuada nisl nec risus bibendum viverra. Proin nec ullamcorper diam, ut mollis turpis. In iaculis et mi nec vulputate. Quisque non nulla ac nibh volutpat aliquam ac sed diam. In fermentum commodo libero, sed iaculis mi mattis eu. Suspendisse semper eleifend ligula, eget pretium augue. Duis id lobortis augue. Quisque tristique bibendum arcu non hendrerit. Donec eu lacinia dolor, ac commodo erat. Phasellus tempor feugiat adipiscing. Nam vestibulum, purus at placerat vulputate, metus tellus tincidunt leo, ac mollis risus diam nec sapien.
-        <p></p>
-        Curabitur id lectus cursus, feugiat neque sit amet, tincidunt dolor. Ut hendrerit nisi vitae nulla gravida pulvinar. In mattis in est nec varius. Duis non sapien quis dui auctor rutrum in vitae nibh. Donec pulvinar, erat sit amet pharetra mollis, risus est euismod magna, nec gravida quam velit ac nisl. Pellentesque viverra ac neque non euismod. Aenean feugiat dolor quis nulla ullamcorper, et pretium augue gravida. Nunc ullamcorper congue felis, sed auctor enim auctor ac. Aliquam non augue fermentum nibh luctus dapibus quis sit amet mauris. Nulla eu egestas lectus.
-        <p></p>
-        Maecenas scelerisque massa sed ornare blandit. Phasellus suscipit mauris sed risus rutrum accumsan. Nullam semper tellus elit, sed posuere ante semper vitae. Donec accumsan nec purus at mattis. Morbi congue convallis risus eget sollicitudin. Proin laoreet viverra ligula, id sollicitudin dolor euismod ut. Nam venenatis lacus id enim facilisis rhoncus. Duis tempus urna eget malesuada dignissim. Fusce sollicitudin facilisis erat, commodo pulvinar velit malesuada vitae. Fusce auctor urna massa, eget aliquet quam fermentum id. Pellentesque eget nisl molestie, pellentesque turpis in, ullamcorper purus. Vestibulum at odio nunc.
+      <div class="row">
+        <br>
+        <div class="small-4 columns">
+          <label for="url-label" class="right inline">Share this poll</label>
+        </div>
+        <div class="small-8 columns">
+          <input type="text" id="url-label" value="<%= document.URL %>">
+        </div>
       </div>
+
+      <div class="row">
+        <br>
+        <a href="#/polls/edit"><button type="button" class="small button expand noshadow">Edit Poll</button></a>
+      </div>
+
     </div>
   </div>
-
-
-
-  <ul id="votes"></ul>
 </div>
 
 <script>
@@ -41,13 +46,9 @@
   var pusher = new Pusher('280047e8dcfd93f78f89');
   var channel = pusher.subscribe('vote_channel');
 
-
   channel.bind('new_vote', function(data) {
-    $('#votes').append("<li>You voted: " + data.message+""+data.poll_id + "</li>");
     var pieData = [];
     var colors = ["#F38630", "#E0E4CC", "#69D2E7"];
-    console.log("data votes before");
-    console.log(data.votes);
 
     //populate vote freq hash with default values
     for(var i = 0; i < numAnswers; i++) {
@@ -55,14 +56,9 @@
         data.votes[i+1] = 0;
     }
 
-    console.log("data votes after");
-    console.log(data.votes);
-
     for(var i = 0; i < numAnswers; i++) {
       pieData.push({ value: data.votes[i+1], color: PollCatApp.COLORS[i] });
     }
-    console.log("pie data from show template");
-    console.log(pieData);
 
     var ctx = $("#myChart").get(0).getContext("2d");
     var myPie = new Chart(ctx).Pie(pieData);
