@@ -6,6 +6,7 @@ PollCatApp.Routers.PollRouter = Backbone.Router.extend({
   routes: {
     "": "index",
     "polls/new": "new",
+    "polls/:id/edit": "edit",
     "polls/:id": "show",
     "votes": "all_votes"
   },
@@ -40,6 +41,12 @@ PollCatApp.Routers.PollRouter = Backbone.Router.extend({
   new: function() {
     var newView = new PollCatApp.Views.PollNew();
     this.$rootEl.html(newView.render().$el);
+  },
+
+  edit: function(id) {
+    var poll = PollCatApp.polls.get(id);
+    var editView = new PollCatApp.Views.PollEdit( { model: poll } );
+    this.$rootEl.html(editView.render().$el);
   },
 
   all_votes: function() {

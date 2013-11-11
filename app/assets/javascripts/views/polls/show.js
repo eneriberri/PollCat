@@ -13,7 +13,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
                                        textCode: this.textCode });
     this.$el.html(renderedHTML);
 
-    this.renderChart();
+    this.renderChart(); //draws initial chart and on refresh
     return this;
   },
 
@@ -29,14 +29,9 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
       for(var i = 0; i < len; i++) {
         pieData.push({ value: this.voteFreq[i+1], color: PollCatApp.COLORS[i] });
       }
-
-      console.log("pie data from view");
-      console.log(pieData);
-
       var ctx = this.$el.find('#myChart').get(0).getContext("2d");
       new Chart(ctx).Pie(pieData);
     }
-
   }
 
 
