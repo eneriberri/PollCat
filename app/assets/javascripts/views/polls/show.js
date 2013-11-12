@@ -63,8 +63,18 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   },
 
   editAnswers: function() {
-
-
+    $('#answers').children().each(function(index, answer) {
+      if(index % 2 !== 0) {
+        var currentAnswer = $(answer).text();
+        //substract 2 to get rid of space and period before Text Code
+        var textCodeIndex = currentAnswer.lastIndexOf("Text Code:") - 2;
+        currentAnswer = currentAnswer.slice(0, textCodeIndex);
+        console.log(currentAnswer.slice(0, textCodeIndex));
+        var input = "<input name='answer[body]' placeholder='"
+                    + currentAnswer + "' class='poll-edit-answer'></input>";
+        $(answer).replaceWith(input);
+     }
+    });
   },
 
   savePoll: function(event) {
@@ -73,21 +83,15 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     $btn.removeClass('success save').addClass('edit');
 
     var currentQues = $("#poll-ques").val();
-
-    this.model.set({question: currentQues});
     var input = "<h1 id='poll-ques'>" + currentQues + "</h1>";
     $("#poll-ques").replaceWith(input);
 
-    console.log($("#poll-ques"));
-
-    this.model.save({
-      success: function(model, response) {
+    this.model.save({question: currentQues}, {
+      success: function() {
         console.log('success');
-        console.log(response);
       },
-      error: function(model, response) {
+      error: function() {
         console.log('error');
-        console.log(response);
       }
     });
   }
