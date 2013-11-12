@@ -1,16 +1,27 @@
 <div class="row">
   <p></p>
   <h1>Hello, <i><%= @user.username %>. </i></h1>
-
+  <p></p>
+  <br>
+  <p></p>
   <% if @user.polls.empty? %>
     <h2>It doesn't look like you have any polls yet.</h2>
-    <p></p>
-    <br>
-    <p></p>
     <h2><a href="#">View a sample poll</a> or
      <a href="/polls/new">create your first poll now.</a></h2>
-    <p></p>
   <% else %>
-
+    <h2>Your Polls</h2>
+    <ul class="circle">
+    <% @user.polls.each do |poll| %>
+      <li><h4><a href="/#/polls/<%=poll.id%>"><%= poll.question %></a><small> created: <%= poll.created_at %></small></h4></li>
+    <% end %>
+    </ul>
   <% end %>
+  <p></p>
+  <br>
+  <p></p>
+  <br>
+  <div class="row">
+    <button class="expand noshadow">Sign Out</button>
+  </div>
+
 </div>
