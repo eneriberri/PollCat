@@ -1,7 +1,7 @@
 PollCatApp::Application.routes.draw do
   resources :users, :only => [:new, :create, :show]
   resources :polls
-  resources :answers, :only => [:index, :show]
+  resources :answers, :only => [:index, :show, :edit, :update]
 
   resource :session, :only => [:new, :create, :destroy]
 

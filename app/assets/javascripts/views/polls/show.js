@@ -29,14 +29,12 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
       new Chart(ctxInitial).Pie([{ value: 1, color: "#000000" }]);
     }
     else {
-      console.log("else");
       var pieData = [];
       var len = this.model.get('answers').length;
       for(var i = 0; i < len; i++) {
         var freq = typeof this.voteFreq[i+1] !== 'undefined' ? this.voteFreq[i+1] : 0;
         pieData.push({ value: freq, color: PollCatApp.COLORS[i] });
       }
-      console.log(pieData);
       var ctx = this.$el.find('#myChart').get(0).getContext("2d");
       new Chart(ctx).Pie(pieData);
     }
@@ -67,10 +65,12 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
 
   editAnswers: function() {
     $('#answers').children().each(function(index, answer) {
-      if(index % 2 !== 0) {
+      if(index % 2 !== 0) { //skips the color square element in the <ul>
         var currentAnswer = $(answer).text();
-        //substract 2 to get rid of space and period before Text Code
+
         var textCodeIndex = currentAnswer.lastIndexOf("Text Code:");
+
+        //substract 2 to get rid of space and period before Text Code
         currentAnswer = currentAnswer.slice(0, textCodeIndex - 2);
         var input = "<input name='answer[body]' placeholder='"
                     + currentAnswer + "' class='poll-edit-answer'></input>";
@@ -88,28 +88,44 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     var input = "<h1 id='poll-ques'>" + currentQues + "</h1>";
     $("#poll-ques").replaceWith(input);
 
+    this.populateAnswers();
     this.saveAnswers();
 
     this.model.save({question: currentQues}, {
-      success: function() {
-        console.log('success');
-      },
       error: function() {
         console.log('error');
       }
     });
   },
 
-  saveAnswers: function() {
+  populateAnswers: function() {
     var that = this;
     var textCode = 1;
+    var answerId = 1;
     $('#answers').children().each(function(index, answer) {
       if(index % 2 !== 0) {
         var currentAnswer = $(answer).val();
-        var input = "<h3>" + currentAnswer + ". <small>Text Code: " + textCode + "" + that.model.id + "</small></h3>";
+        var input = "<h3 id=" + answerId + ">" + currentAnswer + ". <small>Text Code: "
+                    + textCode + "" + that.model.id + "</small></h3>";
         $(answer).replaceWith(input);
         textCode++;
+        answerId++;
      }
+    });
+  },
+
+  saveAnswers: function() {
+    var answerId = 1;
+    this.model.get("answers").each(function(answer) {
+      var answerEl = "#" + answerId;
+      var textCodeIndex = $(answerEl).text().lastIndexOf("Text Code");
+      var answerBody = $(answerEl).text().slice(0, textCodeIndex - 2);
+      console.log(answerBody);
+      answerId++;
+      answer.save({body: answerBody}, {
+        success: function() { console.log('success') },
+        error: function() { console.log('error') }
+      });
     });
   }
 
