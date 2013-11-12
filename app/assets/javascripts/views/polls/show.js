@@ -67,11 +67,21 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
 
     $("#poll-ques").replaceWith(input);
     $("#poll-ques").focus();
+
+    //tool tip display on hover
+    var msg = "<span data-tooltip class='has-tip'" +
+              "title='Edit poll question here.'></span>"
+    $("#poll-ques").wrap(msg);
   },
 
   editAnswers: function() {
     $('#answers').children().each(function(index, answer) {
       if(index % 2 !== 0) { //skips the color square element in the <ul>
+        //tool tip display on hover
+        var msg = "<span data-tooltip class='has-tip tip-right'" +
+                  "title='Edit answer choice here.'></span>"
+        $(answer).wrap(msg);
+
         var currentAnswer = $(answer).text();
 
         var textCodeIndex = currentAnswer.lastIndexOf("Text Code:");
@@ -151,7 +161,8 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   },
 
   disabledToolTip: function(event) {
-    var msg = "<span data-tooltip class='has-tip' title='Action enabled only for poll author. Sorry :3'></span>"
+    var msg = "<span data-tooltip class='has-tip'" +
+              "title='Action enabled only for poll author. Sorry :3'></span>"
     $(event.target).wrap(msg);
   }
 
