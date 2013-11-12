@@ -1,4 +1,4 @@
-<form action="<%= url %>" method="post" accept-charset="utf-8">
+<form action="<%= url %>" method="post" accept-charset="utf-8" class="custom">
   <input type="hidden"
          name="authenticity_token"
          value="<%= form_authenticity_token %>">
@@ -13,5 +13,5 @@
 
   <br>
 
-  <p><input type="submit" value="<%= button_val %>" class="btn btn-primary"></p>
+  <p><input type="submit" value="<%= button_val %>" class="medium button expand"></p>
 </form>

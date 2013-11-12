@@ -1,2 +1,21 @@
+<div class="row">
 <h1>Sign Up</h1>
-<%= render './layouts/form', :url => users_url, :button_val => 'Sign Up' %>
+
+<form data-abide action="<%= users_url %>" method="post" class="custom">
+  <input type="hidden"
+         name="authenticity_token"
+         value="<%= form_authenticity_token %>">
+
+  <div class="name-field">
+    <label>Username <small>required</small></label>
+    <input type="text" name="user[username]">
+    <small class="error">Username cannot be blank.</small>
+  </div>
+  <div class="email-field">
+    <label>Password <small>required</small></label>
+    <input type="password" name="user[password]" required>
+    <small class="error">Password must be at least 8 characters with 1 capital letter, 1 number, and one special character.</small>
+  </div>
+  <p><input type="submit" value="Sign Up" class="medium button expand"></p>
+</form>
+</div>

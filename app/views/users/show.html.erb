@@ -1,1 +1,16 @@
-<h1> Hello, <i><%= @user.username %>. </i></h1>
+<div class="row">
+  <p></p>
+  <h1>Hello, <i><%= @user.username %>. </i></h1>
+
+  <% if @user.polls.empty? %>
+    <h2>It doesn't look like you have any polls yet.</h2>
+    <p></p>
+    <br>
+    <p></p>
+    <h2><a href="#">View a sample poll</a> or
+     <a href="/polls/new">create your first poll now.</a></h2>
+    <p></p>
+  <% else %>
+
+  <% end %>
+</div>

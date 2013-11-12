@@ -42,9 +42,7 @@
             Delete Poll
           </button>
           <input type="hidden" class="hidden-delete">
-
       </div>
-
     </div>
   </div>
 </div>
@@ -91,12 +89,11 @@
 
   $('.close-modal').on('click', function() { $('a.close-reveal-modal').trigger('click') });
   $('.delete').on('click', function() {
-    $('.deleting').append("<h3>Deleting...<small> redirecting to home page.</small></h3>");
+    $('.deleting').append("<h2>Deleting...<small> redirecting to home page.</small></h2>");
     setTimeout(function() {
       $('a.close-reveal-modal').trigger('click');
       $('.hidden-delete').trigger('click');
-    }, 3500);
-
+    }, 2500);
   });
 
 </script>
