@@ -16,7 +16,7 @@
           <div class="square" style="background-color: <%= PollCatApp.COLORS[i] %>;">
             <!-- insert vote count here -->
           </div>
-          <% textCode+=1 %>
+          <% textCode++; %>
           <li>
             <h3><%= answer.attributes.body %>. <small>Text Code: <%= textCode+""+poll.id %></small></h3>
           </li>

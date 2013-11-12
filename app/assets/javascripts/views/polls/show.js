@@ -2,8 +2,8 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   template: JST['polls/show'],
 
   initialize: function(options) {
-    this.textCode = options.textCode;
     this.voteFreq = options.voteFreq;
+    // this.currentUser = options.currentUser;
   },
 
   events: {
@@ -15,7 +15,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   render: function() {
     var renderedHTML = this.template({ poll: this.model,
                                        votes: this.collection,
-                                       textCode: this.textCode });
+                                       textCode: 0 });
     this.$el.html(renderedHTML);
     //draws initial chart and on refresh
     this.renderChart();

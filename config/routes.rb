@@ -1,5 +1,5 @@
 PollCatApp::Application.routes.draw do
-  resources :users, :only => [:new, :create, :show]
+  resources :users, :only => [:new, :create, :show, :index]
   resources :polls
   resources :answers, :only => [:index, :show, :edit, :update]
 

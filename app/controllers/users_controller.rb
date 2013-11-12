@@ -21,4 +21,8 @@ class UsersController < ApplicationController
 
     render :show
   end
+
+  def index
+    render :json => Answer.includes(:polls).all, :include => :polls
+  end
 end

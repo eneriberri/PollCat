@@ -29,7 +29,6 @@ PollCatApp.Routers.PollRouter = Backbone.Router.extend({
 
     var showView = new PollCatApp.Views.PollShow( { model: poll,
                                                     collection: PollCatApp.votes,
-                                                    textCode: PollCatApp.textCode,
                                                     voteFreq: vote_freq,
                                                     id: id } );
 
