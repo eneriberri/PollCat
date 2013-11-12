@@ -29,11 +29,14 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
       new Chart(ctxInitial).Pie([{ value: 1, color: "#000000" }]);
     }
     else {
+      console.log("else");
       var pieData = [];
-      var len = _.keys(this.voteFreq).length;
+      var len = this.model.get('answers').length;
       for(var i = 0; i < len; i++) {
-        pieData.push({ value: this.voteFreq[i+1], color: PollCatApp.COLORS[i] });
+        var freq = typeof this.voteFreq[i+1] !== 'undefined' ? this.voteFreq[i+1] : 0;
+        pieData.push({ value: freq, color: PollCatApp.COLORS[i] });
       }
+      console.log(pieData);
       var ctx = this.$el.find('#myChart').get(0).getContext("2d");
       new Chart(ctx).Pie(pieData);
     }
@@ -67,9 +70,8 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
       if(index % 2 !== 0) {
         var currentAnswer = $(answer).text();
         //substract 2 to get rid of space and period before Text Code
-        var textCodeIndex = currentAnswer.lastIndexOf("Text Code:") - 2;
-        currentAnswer = currentAnswer.slice(0, textCodeIndex);
-        console.log(currentAnswer.slice(0, textCodeIndex));
+        var textCodeIndex = currentAnswer.lastIndexOf("Text Code:");
+        currentAnswer = currentAnswer.slice(0, textCodeIndex - 2);
         var input = "<input name='answer[body]' placeholder='"
                     + currentAnswer + "' class='poll-edit-answer'></input>";
         $(answer).replaceWith(input);
@@ -86,6 +88,8 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     var input = "<h1 id='poll-ques'>" + currentQues + "</h1>";
     $("#poll-ques").replaceWith(input);
 
+    this.saveAnswers();
+
     this.model.save({question: currentQues}, {
       success: function() {
         console.log('success');
@@ -93,6 +97,19 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
       error: function() {
         console.log('error');
       }
+    });
+  },
+
+  saveAnswers: function() {
+    var that = this;
+    var textCode = 1;
+    $('#answers').children().each(function(index, answer) {
+      if(index % 2 !== 0) {
+        var currentAnswer = $(answer).val();
+        var input = "<h3>" + currentAnswer + ". <small>Text Code: " + textCode + "" + that.model.id + "</small></h3>";
+        $(answer).replaceWith(input);
+        textCode++;
+     }
     });
   }
 
