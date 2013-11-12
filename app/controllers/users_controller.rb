@@ -23,6 +23,6 @@ class UsersController < ApplicationController
   end
 
   def index
-    render :json => Answer.includes(:polls).all, :include => :polls
+    render :json => User.includes(:polls).all, :include => :polls
   end
 end

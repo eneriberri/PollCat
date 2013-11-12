@@ -9,14 +9,17 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   events: {
     "click .edit": "editPoll",
     "click .save": "savePoll",
-    "click .hidden-delete": "deletePoll"
+    "click .hidden-delete": "deletePoll",
+    "click .disabled": "disabledToolTip"
   },
 
   render: function() {
     var renderedHTML = this.template({ poll: this.model,
                                        votes: this.collection,
                                        textCode: 0 });
+
     this.$el.html(renderedHTML);
+    this.toggleAuthorButtons();
     //draws initial chart and on refresh
     this.renderChart();
 
@@ -42,12 +45,14 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   },
 
   editPoll: function(event) {
-    this.editQues();
-    this.editAnswers();
+    if(event.target.className.indexOf('disabled') === -1) {
+      this.editQues();
+      this.editAnswers();
 
-    var $btn = $(".edit");
-    $btn.text("Save Poll");
-    $btn.removeClass('edit').addClass('success save');
+      var $btn = $(".edit");
+      $btn.text("Save Poll");
+      $btn.removeClass('edit').addClass('success save');
+    }
   },
 
   editQues: function() {
@@ -133,6 +138,25 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   deletePoll: function() {
     this.model.destroy();
     Backbone.history.navigate('/', {trigger: true});
+  },
+
+  toggleAuthorButtons: function() {
+    if(typeof currentUser === undefined || this.model.get("user_id") !== currentUser.id) { //change to !== later. debugging now
+      _(function(){
+        $('.edit').addClass('disabled greyed');
+        $('.initial-delete').addClass('disabled greyed');
+      }).defer();
+    }
+    else {
+      _(function(){
+        $('.initial-delete').attr('data-reveal-id', 'deleteModal');
+      }).defer();
+    }
+  },
+
+  disabledToolTip: function(event) {
+    var msg = "<span data-tooltip class='has-tip' title='Action enabled only for poll author. Sorry :3'></span>"
+    $(event.target).wrap(msg);
   }
 
 })

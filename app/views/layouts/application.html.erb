@@ -17,6 +17,14 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
+    <script type="text/javascript">
+      <% if current_user %>
+        window.currentUser = {
+            id : <%= current_user.id %>
+        }
+      <% end %>
+    </script>
+
   	<%= stylesheet_link_tag    "application" %>
   	<%= javascript_include_tag "vendor/custom.modernizr" %>
     <%= csrf_meta_tags %>

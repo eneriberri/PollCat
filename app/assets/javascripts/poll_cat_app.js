@@ -13,6 +13,7 @@ window.PollCatApp = {
 
     PollCatApp.polls.fetch({
       success: function() {
+        PollCatApp.users.fetch();
         PollCatApp.votes.fetch({
           success: function() {
             new PollCatApp.Routers.PollRouter({
