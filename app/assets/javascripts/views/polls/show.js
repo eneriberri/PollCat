@@ -126,12 +126,8 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
       var answerEl = "#" + answerId;
       var textCodeIndex = $(answerEl).text().lastIndexOf("Text Code");
       var answerBody = $(answerEl).text().slice(0, textCodeIndex - 2);
-      console.log(answerBody);
       answerId++;
-      answer.save({body: answerBody}, {
-        success: function() { console.log('success') },
-        error: function() { console.log('error') }
-      });
+      answer.save({body: answerBody}, {});
     });
   },
 
@@ -141,7 +137,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   },
 
   toggleAuthorButtons: function() {
-    if(typeof currentUser === undefined || this.model.get("user_id") !== currentUser.id) { //change to !== later. debugging now
+    if(currentUser.id === undefined || this.model.get("user_id") !== currentUser.id) {
       _(function(){
         $('.edit').addClass('disabled greyed');
         $('.initial-delete').addClass('disabled greyed');
