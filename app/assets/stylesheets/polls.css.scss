@@ -6,7 +6,10 @@
 .square {
 	height: 40px;
 	width: 40px;
+  line-height: 40px;
+  text-align: center;
   float: left;
+  font-weight: bold;
 }
 
 .noshadow {
@@ -19,5 +22,11 @@
   outline: none;
   font-size: 43px;
   font-weight: bold;
+}
 
+.poll-edit-answers {
+  border: none;
+  outline: none;
+  font-size: 32px;
+  font-weight: bold;
 }

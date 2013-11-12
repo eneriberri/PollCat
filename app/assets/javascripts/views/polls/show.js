@@ -41,6 +41,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
 
   editPoll: function(event) {
     this.editQues();
+    this.editAnswers();
 
     var $btn = $(".edit");
     $btn.text("Save Poll");
@@ -61,10 +62,34 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     $("#poll-ques").focus();
   },
 
-  savePoll: function() {
-    var $btn = $(".success");
+  editAnswers: function() {
+
+
+  },
+
+  savePoll: function(event) {
+    var $btn = $(".save");
     $btn.text("Edit Poll");
     $btn.removeClass('success save').addClass('edit');
+
+    var currentQues = $("#poll-ques").val();
+
+    this.model.set({question: currentQues});
+    var input = "<h1 id='poll-ques'>" + currentQues + "</h1>";
+    $("#poll-ques").replaceWith(input);
+
+    console.log($("#poll-ques"));
+
+    this.model.save({
+      success: function(model, response) {
+        console.log('success');
+        console.log(response);
+      },
+      error: function(model, response) {
+        console.log('error');
+        console.log(response);
+      }
+    });
   }
 
 })

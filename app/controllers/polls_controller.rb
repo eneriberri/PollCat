@@ -44,8 +44,7 @@ class PollsController < ApplicationController
     @poll = Poll.find(params[:id])
     @message_body = params["Body"]
 
-    render :show
-    #render :json => @poll.to_json(:include => :answers)
+    render :json => @poll.to_json(:include => :answers)
   end
 
   def index
@@ -60,7 +59,7 @@ class PollsController < ApplicationController
     @poll = Poll.find(params[:id])
 
     if @poll.update_attributes(params[:poll])
-      redirect_to poll_url(@poll)
+      render :json => @poll.to_json(:include => :answers)
     else
       render :json => @poll.errors.full_messages
     end

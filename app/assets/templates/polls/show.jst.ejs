@@ -13,7 +13,9 @@
       <ul id="answers" class="no-bullet">
         <% var i = 0 %>
         <% poll.get("answers").each(function(answer) { %>
-          <div class="square" style="background-color: <%= PollCatApp.COLORS[i] %>;"></div>
+          <div class="square" style="background-color: <%= PollCatApp.COLORS[i] %>;">
+            <!-- insert vote count here -->
+          </div>
           <% textCode+=1 %>
           <li>
             <h3><%= answer.attributes.body %>.
@@ -22,6 +24,7 @@
             <% i++ %>
         <% }); %>
       </ul>
+
       <div class="row">
         <br>
         <div class="small-4 columns">
@@ -34,9 +37,7 @@
 
       <div class="row">
         <br>
-        <!-- <a href="#/polls/<%= poll.id %>/edit"> -->
           <button type="button" class="small button expand noshadow edit">Edit Poll</button>
-        <!-- </a> -->
       </div>
 
     </div>
