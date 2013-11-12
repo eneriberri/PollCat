@@ -37,10 +37,33 @@
       <div class="row">
         <br>
           <button type="button" class="small button expand noshadow edit">Edit Poll</button>
+
+          <button type="button" class="small button expand noshadow alert" data-reveal-id="deleteModal">
+            Delete Poll
+          </button>
+          <input type="hidden" class="hidden-delete">
+
       </div>
 
     </div>
   </div>
+</div>
+
+<div id="deleteModal" class="reveal-modal medium">
+  <h2>Are you sure you want to delete this poll?</h2>
+  <p class="lead">Meow~</p>
+  <div class="row">
+    <div class="small-6 columns">
+      <button type="button" class="large button expand noshadow edit alert delete">Yes, delete!</button>
+    </div>
+    <div class="small-6 columns">
+        <button type="button" class="large button expand noshadow edit close-modal">No, take me back!</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="deleting"></div>
+  </div>
+  <a class="close-reveal-modal">&#215;</a>
 </div>
 
 <script>
@@ -64,6 +87,16 @@
 
     var ctx = $("#myChart").get(0).getContext("2d");
     var myPie = new Chart(ctx).Pie(pieData);
+  });
+
+  $('.close-modal').on('click', function() { $('a.close-reveal-modal').trigger('click') });
+  $('.delete').on('click', function() {
+    $('.deleting').append("<h3>Deleting...<small> redirecting to home page.</small></h3>");
+    setTimeout(function() {
+      $('a.close-reveal-modal').trigger('click');
+      $('.hidden-delete').trigger('click');
+    }, 3500);
+
   });
 
 </script>

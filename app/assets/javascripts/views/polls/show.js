@@ -8,7 +8,8 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
 
   events: {
     "click .edit": "editPoll",
-    "click .save": "savePoll"
+    "click .save": "savePoll",
+    "click .hidden-delete": "deletePoll"
   },
 
   render: function() {
@@ -127,6 +128,11 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
         error: function() { console.log('error') }
       });
     });
+  },
+
+  deletePoll: function() {
+    this.model.destroy();
+    Backbone.history.navigate('/', {trigger: true});
   }
 
 })
