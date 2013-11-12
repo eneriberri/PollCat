@@ -74,14 +74,13 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   },
 
   editAnswers: function() {
+
     $('#answers').children().each(function(index, answer) {
       if(index % 2 !== 0) { //skips the color square element in the <ul>
-        //tool tip display on hover
-        var msg = "<span data-tooltip class='has-tip tip-right'" +
+        var currentAnswer = $(answer).text();
+        var msg = "<span data-tooltip class='has-tip tip-right answer-tip'" +
                   "title='Edit answer choice here.'></span>"
         $(answer).wrap(msg);
-
-        var currentAnswer = $(answer).text();
 
         var textCodeIndex = currentAnswer.lastIndexOf("Text Code:");
 
@@ -118,8 +117,9 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     var textCode = 1;
     var answerId = 1;
     $('#answers').children().each(function(index, answer) {
-      if(index % 2 !== 0) {
-        var currentAnswer = $(answer).val();
+      if(index % 2 !== 0) { //tooltip wraps around answer choice, so must find its child
+        var currentAnswer = $('.answer-tip').children().first().val();
+        console.log(currentAnswer);
         var input = "<h3 id=" + answerId + ">" + currentAnswer + ". <small>Text Code: "
                     + textCode + "" + that.model.id + "</small></h3>";
         $(answer).replaceWith(input);
