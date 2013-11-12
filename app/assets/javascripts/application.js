@@ -13,6 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require foundation
+//= require foundation.abide
 //= require Chart
 //= require pusher.min
 //= require underscore

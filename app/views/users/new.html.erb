@@ -8,19 +8,19 @@
 
   <div class="name-field">
     <label>Username <small>required</small></label>
-    <input type="text" name="user[username]">
+    <input type="text" name="user[username]" required>
     <small class="error">Username cannot be blank.</small>
   </div>
-  <div class="email-field">
+  <div class="password-field">
     <label>Password <small>required</small></label>
     <input type="password" name="user[password]" required>
     <small class="error">Password must be at least 8 characters with 1 capital letter, 1 number, and one special character.</small>
   </div>
-  <!-- <div class="bot-field">
+  <div class="bot-field">
     <label>Are you a robot? <small>required</small></label>
-    <input type="text" name="user[username]" placeholder="No" pattern="robot">
+    <input type="text" name="user[username]" placeholder="No" pattern="robot" required>
     <small class="error">D:</small>
-  </div> -->
+  </div>
   <p><input type="submit" value="Sign Up" class="medium button expand noshadow"></p>
 </form>
 </div>

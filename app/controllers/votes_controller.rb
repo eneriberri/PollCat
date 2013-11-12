@@ -25,7 +25,7 @@ class VotesController < ApplicationController
       success_txt = "Howdy! Thanks for voting. -Poll Cat :3"
       send_txt(from_number, success_txt)
     else
-      error_txt = "Vote was not received. Please choose from one of the text codes. -Poll Cat D:"
+      error_txt = "Hey, butterfingers. That wasn't a valid text code. Try again. -Poll Cat :3"
       send_txt(from_number, error_txt)
     end
       render :json => "text received!"

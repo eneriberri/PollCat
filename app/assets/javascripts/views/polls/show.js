@@ -3,7 +3,6 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
 
   initialize: function(options) {
     this.voteFreq = options.voteFreq;
-    // this.currentUser = options.currentUser;
   },
 
   events: {
@@ -64,14 +63,14 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
 
     var input = "<input name='poll[question]' id='poll-ques' placeholder='"
                 + currentQues + "' class='poll-edit-ques'></input>";
-
     $("#poll-ques").replaceWith(input);
-    $("#poll-ques").focus();
 
     //tool tip display on hover
     var msg = "<span data-tooltip class='has-tip'" +
               "title='Edit poll question here.'></span>"
     $("#poll-ques").wrap(msg);
+
+    $("#poll-ques").focus();
   },
 
   editAnswers: function() {
