@@ -1,24 +1,6 @@
 class PollsController < ApplicationController
   before_filter :require_current_user, :only => [:edit, :update, :destroy, :new]
 
-  def send_text_message
-    number_to_send_to = CALLER_ID
-
-    twilio_sid = ACCOUNT_SID
-    twilio_token = ACCOUNT_TOKEN
-    twilio_phone_number = TWILIO_PHONE
-
-    @twilio_client = Twilio::REST::Client.new twilio_sid, twilio_token
-
-    @twilio_client.account.sms.messages.create(
-      :from => "+1#{twilio_phone_number}",
-      :to => number_to_send_to,
-      :body => "Howdy! Thanks for voting. -Poll Cat :3"
-    )
-    render :index
-
-  end
-
   def new
     render :new
   end
