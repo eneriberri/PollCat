@@ -12,7 +12,8 @@
     <h2>Your Polls</h2>
     <ul class="circle">
     <% @user.polls.each do |poll| %>
-      <li><h4><a href="/#/polls/<%=poll.id%>"><%= poll.question %></a><small> created: <%= poll.created_at %></small></h4></li>
+      <li><h4><a href="/#/polls/<%=poll.id%>"><%= poll.question %></a>
+        <small> created: <%= poll.created_at %></small></h4></li>
     <% end %>
     </ul>
   <% end %>
@@ -21,7 +22,8 @@
   <p></p>
   <br>
   <div class="row">
-    <button class="expand noshadow">Sign Out</button>
+    <%=button_to "Sign Out", session_url, :method => :delete, :class => ["expand", "noshadow", "button"] %>
+
   </div>
 
 </div>

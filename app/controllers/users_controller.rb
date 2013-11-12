@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :require_current_user, :only => [:show]
+
   def new
     render :new
   end
