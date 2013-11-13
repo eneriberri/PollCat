@@ -18,9 +18,10 @@
   box-shadow: none !important;
 }
 
-* {
+/** {
   margin: 0;
-}
+}*/
+
 html, body {
   height: 100%;
 }

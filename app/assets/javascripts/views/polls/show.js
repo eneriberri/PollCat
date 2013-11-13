@@ -67,20 +67,25 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
 
     //tool tip display on hover
     var msg = "<span data-tooltip class='has-tip ques-tip'" +
-              "title='Edit poll question here.'></span>"
+              "title='Type here to edit poll question.'></span>"
     $("#poll-ques").wrap(msg);
+    $("#poll-ques").trigger("mouseover"); //trigger tooltip
 
     $("#poll-ques").focus();
   },
 
   editAnswers: function() {
-
+    var triggerOnce = true;
     $('#answers').children().each(function(index, answer) {
       if(index % 2 !== 0) { //skips the color square element in the <ul>
         var currentAnswer = $(answer).text();
-        var msg = "<span data-tooltip class='has-tip tip-right answer-tip'" +
-                  "title='Edit answer choice here.'></span>"
+        var msg = "<span data-tooltip class='has-tip tip-top answer-tip'" +
+                  "title='Type here to edit answer choice.'></span>"
         $(answer).wrap(msg);
+        if(triggerOnce) {
+          $(answer).trigger("mouseover"); //trigger tooltip
+          triggerOnce = false;
+        }
 
         var textCodeIndex = currentAnswer.lastIndexOf("Text Code:");
 
