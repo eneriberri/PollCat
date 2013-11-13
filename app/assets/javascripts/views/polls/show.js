@@ -76,14 +76,17 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
 
   editAnswers: function() {
     var triggerOnce = true;
+    var that = this;
     $('#answers').children().each(function(index, answer) {
       if(index % 2 !== 0) { //skips the color square element in the <ul>
         var currentAnswer = $(answer).text();
         var msg = "<span data-tooltip class='has-tip tip-top answer-tip'" +
                   "title='Type here to edit answer choice.'></span>"
         $(answer).wrap(msg);
+        //trigger tooltip once for 4 seconds
         if(triggerOnce) {
-          $(answer).trigger("mouseover"); //trigger tooltip
+          $(answer).trigger("mouseover");
+          setTimeout( function() { $(".answer-tip").trigger("mouseleave") } , 4000);
           triggerOnce = false;
         }
 
@@ -91,31 +94,43 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
 
         //substract 2 to get rid of space and period before Text Code
         currentAnswer = currentAnswer.slice(0, textCodeIndex - 2);
+        currentAnswer = that.answerTrim(currentAnswer);
         var input = "<input name='answer[body]' placeholder='"
                     + currentAnswer + "' class='poll-edit-answer'></input>";
+        // $(".poll-edit-answer").wrap(msg);
+        // if(triggerOnce) {
+        //   $(".poll-edit-answer").trigger("mouseover"); //trigger tooltip
+        //   triggerOnce = false;
+        // }
+
         $(answer).replaceWith(input);
      }
     });
+  },
+
+  //removes leading and trailing whitespace from answer
+  answerTrim: function(str) {
+    return str.replace(/^\s\s*/, '').replace(/\s\s*$/, '');
   },
 
   savePoll: function(event) {
     var $btn = $(".save");
     $btn.text("Edit Poll");
     $btn.removeClass('success save').addClass('edit');
+    $('#poll-ques').trigger('mouseleave');
     $('#poll-ques').unwrap(); //remove edit question tooltip
 
     var currentQues = $("#poll-ques").val();
+    if (!currentQues) { //fill with prior value if no input
+      currentQues = this.model.get("question");
+    }
     var input = "<h1 id='poll-ques'>" + currentQues + "</h1>";
     $("#poll-ques").replaceWith(input);
 
     this.populateAnswers();
     this.saveAnswers();
 
-    this.model.save({question: currentQues}, {
-      error: function() {
-        console.log('error');
-      }
-    });
+    this.model.save({question: currentQues}, {});
   },
 
   populateAnswers: function() {
@@ -125,7 +140,9 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     $('#answers').children().each(function(index, answer) {
       if(index % 2 !== 0) { //tooltip wraps around answer choice, so must find its child
         var currentAnswer = $('.answer-tip').children().first().val();
-        console.log(currentAnswer);
+        if(!currentAnswer) { //if user left blank, fill with prior val
+          currentAnswer = $('.answer-tip').children().first().attr('placeholder');
+        }
         var input = "<h3 id=" + answerId + ">" + currentAnswer + ". <small>Text Code: "
                     + textCode + "" + that.model.id + "</small></h3>";
         $(answer).replaceWith(input);
@@ -137,6 +154,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
 
   saveAnswers: function() {
     var answerId = 1;
+
     this.model.get("answers").each(function(answer) {
       var answerEl = "#" + answerId;
       var textCodeIndex = $(answerEl).text().lastIndexOf("Text Code");
