@@ -54,9 +54,30 @@
         <!-- Right Nav Section -->
         <ul class="right">
           <li class="divider"></li>
-            <li class="active"><a href="/session/new">Sign In</a></li>
+          <% if current_user.nil? %>
+            <li class="has-form">
+              <form action="<%= session_url %>" method="post">
+                <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+
+                <div class="row collapse">
+                  <div class="small-5 columns">
+                    <input type="text" placeholder="username" name="user[username]">
+                  </div>
+                  <div class="small-5 columns">
+                    <input type="password" placeholder="password" name="user[password]">
+                  </div>
+                  <div class="small-2 columns">
+                    <input type="submit" value="Log In" class="medium button expand noshadow">
+                  </div>
+                </div>
+              </form>
+            </li>
+
             <li class="divider"></li>
             <li><a href="/users/new">Sign Up</a></li>
+            <% else %>
+              <li><a href="/users/1">My Account</a></li>
+            <% end %>
         </ul>
 
 
