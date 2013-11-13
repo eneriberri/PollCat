@@ -66,7 +66,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     $("#poll-ques").replaceWith(input);
 
     //tool tip display on hover
-    var msg = "<span data-tooltip class='has-tip'" +
+    var msg = "<span data-tooltip class='has-tip ques-tip'" +
               "title='Edit poll question here.'></span>"
     $("#poll-ques").wrap(msg);
 
@@ -97,6 +97,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     var $btn = $(".save");
     $btn.text("Edit Poll");
     $btn.removeClass('success save').addClass('edit');
+    $('#poll-ques').unwrap(); //remove edit question tooltip
 
     var currentQues = $("#poll-ques").val();
     var input = "<h1 id='poll-ques'>" + currentQues + "</h1>";

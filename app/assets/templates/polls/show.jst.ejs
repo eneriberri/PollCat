@@ -16,6 +16,7 @@
         <% poll.get("answers").each(function(answer) { %>
           <div class="square" style="background-color: <%= PollCatApp.COLORS[i] %>;">
             <!-- insert vote count here -->
+            <%= answer.escape('count') %>
           </div>
           <% textCode++; %>
           <li>
@@ -73,6 +74,7 @@
   var pusher = new Pusher('280047e8dcfd93f78f89');
   var channel = pusher.subscribe('vote_channel');
 
+  //draw chart on a new vote
   channel.bind('new_vote', function(data) {
     var pieData = [];
 
@@ -84,7 +86,7 @@
 
     for(var i = 0; i < numAnswers; i++) {
       pieData.push({ value: data.votes[i+1], color: PollCatApp.COLORS[i] });
-    }
+    };
 
     var ctx = $("#myChart").get(0).getContext("2d");
     var myPie = new Chart(ctx).Pie(pieData);

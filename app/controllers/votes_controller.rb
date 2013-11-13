@@ -11,6 +11,7 @@ class VotesController < ApplicationController
 
     if txt_valid?(msg, poll_id)
       Vote.create({msg: msg, from: from_number, poll_id: poll_id})
+      update_answer(msg.to_i, poll_id.to_i)
       votes = Vote.where("poll_id = ?", poll_id)
       votes.map! { |vote| vote.msg }
 
@@ -29,6 +30,12 @@ class VotesController < ApplicationController
       send_txt(from_number, error_txt)
     end
       render :json => "text received!"
+  end
+
+  def update_answer(msg, poll_id)
+    answers = Answer.where(poll_id: poll_id.to_i)
+    #msg-1 is the index of the answer to this poll
+    answers[msg-1].update_attributes({ count: answers[msg-1].count += 1 })
   end
 
   def txt_valid?(msg, poll_id)
