@@ -76,7 +76,7 @@
             <li class="divider"></li>
             <li><a href="/users/new">Sign Up</a></li>
             <% else %>
-              <li><a href="/users/1">My Account</a></li>
+              <li><a href="/users/<%= current_user.id %>">My Account</a></li>
             <% end %>
         </ul>
 

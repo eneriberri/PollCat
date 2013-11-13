@@ -22,8 +22,8 @@
   <p></p>
   <br>
   <div class="row">
+    <%=button_to "Create a Poll", new_poll_url, :method => :get, :class => ["expand", "noshadow", "button", "success"] %>
     <%=button_to "Sign Out", session_url, :method => :delete, :class => ["expand", "noshadow", "button"] %>
-
   </div>
 
 </div>
