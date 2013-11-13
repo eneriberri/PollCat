@@ -34,7 +34,7 @@
 <script>
 
   $("#add-answer").on("click", function (event) {
-      if($(".more-answers").children().length >= 7) {
+      if($(".more-answers").children().length > 6) {
         console.log("in here")
         $("#add-answer").addClass("disabled");
       }
@@ -51,7 +51,6 @@
   );
 
   $("#remove-answer").on("click", function (event) {
-      console.log($("p span").last());
       $("p span").last().remove();
       $("#add-answer").removeClass("disabled");
 
