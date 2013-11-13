@@ -1,13 +1,20 @@
 <br>
 <div class="row">
-  <div class="small-6 large-5 columns"><h1>live audience polling.</h1></div>
+  <div class="small-6 large-5 columns"><h1>Live audience polling</h1></div>
   <div class="small-6 large-7 columns">
     <br>
 
-    <h4>it'll be the easiest thing you do today.</h4>
-    <a href="/polls/new">
-      <button type="button" class="medium button expand noshadow">Create a poll</button>
-    </a>
+    <h4>It'll be the easiest thing you do today.</h4>
+    <form action="/polls/new">
+      <div class="row collapse">
+        <div class="small-9 columns">
+          <input type="text" name="poll[question]" placeholder="Enter Poll Question Here. (Do you like me?)">
+        </div>
+        <div class="small-3 columns">
+          <input type="submit" class="small button noshadow" value="Create a poll">
+        </div>
+      </div>
+    </form>
   </div>
 </div>
 

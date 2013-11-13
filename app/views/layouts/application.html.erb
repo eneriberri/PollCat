@@ -77,6 +77,9 @@
             <li><a href="/users/new">Sign Up</a></li>
             <% else %>
               <li><a href="/users/<%= current_user.id %>">My Account</a></li>
+              <li class="divider"></li>
+              <li><%= link_to "Sign Out", session_url, :method => :delete %></li>
+              <!-- <li><a href="/users/<%= session_url %>">Sign Out</a></li> -->
             <% end %>
         </ul>
 

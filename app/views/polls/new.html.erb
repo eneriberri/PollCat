@@ -5,7 +5,11 @@
 
     <div class="row">
       <label for="your_question">Your Question</label>
-      <input type="text" name="poll[question]" id="your_question" placeholder="e.g. Do you like me?">
+      <% if params[:poll] %>
+        <input type="text" name="poll[question]" id="your_question" placeholder="e.g. Do you like me?" value="<%= params[:poll][:question] %>">
+      <% else %>
+        <input type="text" name="poll[question]" id="your_question" placeholder="e.g. Do you like me?">
+      <% end %>
 
       <br>
 
