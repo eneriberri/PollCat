@@ -16,7 +16,9 @@
         <% poll.get("answers").each(function(answer) { %>
           <div class="square" style="background-color: <%= PollCatApp.COLORS[i] %>;">
             <!-- insert vote count here -->
-            <%= answer.escape('count') %>
+            <!-- <% if(answer.get('count') !== 0) { %>
+              <%= answer.escape('count') %>
+            <% } %> -->
           </div>
           <% textCode++; %>
           <li>
@@ -46,6 +48,8 @@
       </div>
 
       <div class="panel">
+        <p></p>
+        Insert instructions here :3
         <!-- Content here -->
       </div>
     </div>
