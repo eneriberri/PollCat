@@ -1,5 +1,5 @@
 class PollsController < ApplicationController
-  before_filter :require_current_user, :only => [:edit, :update, :destroy, :new]
+  before_filter :require_current_user, :only => [:edit, :update, :destroy]
 
   def new
     render :new

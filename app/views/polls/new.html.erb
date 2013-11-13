@@ -1,7 +1,7 @@
 <center><h1>Create Poll</h1></center>
 <form action="<%= polls_url %>" method="post" accept-charset="utf-8" class="custom">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
-  <input type="hidden" name="poll[user_id]" value="<%= current_user.id %>">
+  <input type="hidden" name="poll[user_id]" value="<%= current_user.nil? ? 1 : current_user.id %>">
 
     <div class="row">
       <label for="your_question">Your Question</label>
