@@ -39,4 +39,5 @@ html, body {
 .footer {
   height: 4em;
   background-color: black;
+  color: white !important;
 }

@@ -83,10 +83,10 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
         var msg = "<span data-tooltip class='has-tip tip-top answer-tip'" +
                   "title='Type here to edit answer choice.'></span>"
         $(answer).wrap(msg);
-        //trigger tooltip once for 4 seconds
+        //trigger tooltip once for 2 seconds
         if(triggerOnce) {
           $(answer).trigger("mouseover");
-          setTimeout( function() { $(".answer-tip").trigger("mouseleave") } , 4000);
+          setTimeout( function() { $(".answer-tip").trigger("mouseleave") } , 1600);
           triggerOnce = false;
         }
 

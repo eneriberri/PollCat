@@ -37,5 +37,14 @@
 }
 
 .center {
-  text-align:center;
+  text-align: center;
+}
+
+.colored-container {
+  background-color: #ff3d3d;
+  color: white !important;
+}
+
+ul.signupinfo li {
+  padding-left: 30px;
 }

@@ -50,11 +50,11 @@
       <div class="row">
         <div class="panel instructions">
           <div class="row collapse">
-            <div class="small-10 columns">
-              <h4>Poll Cat says: <span id="cute-saying">I like your poll.</span></h4>
+            <div class="small-11 columns">
+              <h4>Poll Cat says: <span id="cute-saying">I like your poll. &nbsp;&nbsp;&nbsp;</span></h4>
             </div>
-            <div class="small-2 columns">
-              <button class="small meow">:3</button>
+            <div class="small-1 columns">
+              <h4><a class="meow">:3</a></h4>
             </div>
           </div>
           <br>
@@ -132,9 +132,7 @@
     $this.data('clickCounter', clickCounter);
     // here you know how many clicks have happened including the current one
 
-    var cuteStuff = ["Not too shabby.", "Your couch. It is mine", "Belly rub, plz.", "Fishing for compliments, eh?", "I cute."]
-    // var randIndex = Math.floor(Math.random()*cuteStuff.length);
-    // $("#cute-saying").html(cuteStuff[randIndex]);
+    var cuteStuff = ["Belly rub, plz. &nbsp;&nbsp;&nbsp;", "Your couch. It is mine. &nbsp;&nbsp;&nbsp;", "Not too shabby. &nbsp;&nbsp;&nbsp;", "Fishing for compliments, eh? &nbsp;&nbsp;&nbsp;", "Meow~ &nbsp;&nbsp;&nbsp;"]
     var i = clickCounter % cuteStuff.length;
     $("#cute-saying").html(cuteStuff[i]);
   });
