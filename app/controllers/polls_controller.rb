@@ -2,6 +2,10 @@ class PollsController < ApplicationController
   before_filter :require_current_user, :only => [:edit, :update, :destroy]
 
   def new
+    if current_user.nil?
+      login(User.find(1))
+    end
+
     render :new
   end
 
