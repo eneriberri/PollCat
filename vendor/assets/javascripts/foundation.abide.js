@@ -17,6 +17,7 @@
         alpha_numeric : /[a-zA-Z0-9]+/,
         integer: /-?\d+/,
         number: /-?(?:\d+|\d{1,3}(?:,\d{3})+)?(?:\.\d+)?/,
+        presence: /[\w\W]+/,
 
         robot: /^No$|^no$/,
 

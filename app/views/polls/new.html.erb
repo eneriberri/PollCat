@@ -1,19 +1,23 @@
 <center><h1>Create Poll</h1></center>
-<form action="<%= polls_url %>" method="post" accept-charset="utf-8" class="custom">
+<form data-abide action="<%= polls_url %>" method="post" accept-charset="utf-8" class="custom">
   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
   <input type="hidden" name="poll[user_id]" value="<%= current_user.nil? ? 1 : current_user.id %>">
 
     <div class="row">
-      <label for="your_question">Your Question</label>
-      <% if params[:poll] %>
-        <input type="text" name="poll[question]" id="your_question" placeholder="e.g. Do you like me?" value="<%= params[:poll][:question] %>">
-      <% else %>
-        <input type="text" name="poll[question]" id="your_question" placeholder="e.g. Do you like me?">
-      <% end %>
+      <div class="question-field">
+        <label for="your_question">Your Question <small>required</small></label>
+        <% if params[:poll] %>
+          <input required pattern="presence" type="text" name="poll[question]" id="your_question" placeholder="e.g. Do you like me?" value="<%= params[:poll][:question] %>">
+          <small class="error">Question cannot be blank.</small>
+        <% else %>
+          <input required pattern="presence" type="text" name="poll[question]" id="your_question" placeholder="e.g. Do you like me?">
+          <small class="error">Question cannot be blank.</small>
+        <% end %>
+      </div>
 
       <br>
 
-      <label for="type">Type</label>
+      <label for="type">Type <small>required</small></label>
       <select name="poll[poll_type]" id="type">
       <option value="pie">Pie Chart</option>
       <option value="bar">Donut Chart</option>
@@ -21,11 +25,21 @@
 
       <br>
 
-      <label for="answer_choice">Answer Choices</label>
-      <input type="text" name="answers[1][body]" id="answer_choice" placeholder="Yes">
-      <input type="text" name="answers[2][body]" placeholder="You bet">
+      <div class="answer-field">
+        <label for="answer_choice">Answer Choices <small>required (minimum of 2)</small></label>
+        <input required pattern="presence" type="text" name="answers[1][body]" id="answer_choice" placeholder="Yes">
+        <small class="error">Answer cannot be blank.</small>
+      </div>
 
-      <p class="more-answers"></p>
+      <div class="answer-field">
+        <input required pattern="presence" type="text" name="answers[2][body]" placeholder="You bet">
+        <small class="error">Answer cannot be blank.</small>
+      </div>
+
+      <div class="answer-field">
+        <p class="more-answers"></p>
+      </div>
+
       <button type="button" id="add-answer" class="tiny button">+</button>
       <button type="button" id="remove-answer" class="tiny button disabled">-</button>
       <p></p>
@@ -34,6 +48,7 @@
       <p><input type="submit" value="Create Poll" class="medium button expand noshadow"></p>
     </row>
 </form>
+
 
 <script>
 
