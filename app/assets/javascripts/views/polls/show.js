@@ -13,8 +13,6 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   },
 
   render: function() {
-    console.log(this.model);
-    console.log(this.model.get('answers'));
     var renderedHTML = this.template({ poll: this.model,
                                        votes: this.collection,
                                        textCode: 0 });

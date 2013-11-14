@@ -46,11 +46,24 @@
           </button>
           <input type="hidden" class="hidden-delete">
       </div>
+      <br>
+      <div class="row">
+        <div class="panel instructions">
+          <div class="row collapse">
+            <div class="small-10 columns">
+              <h4>Poll Cat says: <span id="cute-saying">I like your poll.</span></h4>
+            </div>
+            <div class="small-2 columns">
+              <button class="small meow">:3</button>
+            </div>
+          </div>
+          <br>
+          <a href="#" id="share-link">Share this link with friends</a> and see your poll update in real time whenever they vote.
+          <p></p>
+          Don't hesitate to try it yourself. Text a code to (281) 374-4443.
+          <br>
+        </div>
 
-      <div class="panel instructions">
-        <p></p>
-        Insert instructions here :3
-        <!-- Content here -->
       </div>
     </div>
   </div>
@@ -102,7 +115,30 @@
     setTimeout(function() {
       $('a.close-reveal-modal').trigger('click');
       $('.hidden-delete').trigger('click');
-    }, 2000);
+    }, 700);
   });
+
+  $('#share-link').on('click', function(e) {
+    e.preventDefault();
+    $("#url-label").select();
+  });
+
+  $('.meow').on('click', function(e) {
+    var $this = $(this);
+    var clickCounter = $this.data('clickCounter') || 1;
+    // here you know how many clicks have happened before the current one
+
+    clickCounter += 1;
+    $this.data('clickCounter', clickCounter);
+    // here you know how many clicks have happened including the current one
+
+    var cuteStuff = ["Not too shabby.", "Your couch. It is mine", "Belly rub, plz.", "Fishing for compliments, eh?", "I cute."]
+    // var randIndex = Math.floor(Math.random()*cuteStuff.length);
+    // $("#cute-saying").html(cuteStuff[randIndex]);
+    var i = clickCounter % cuteStuff.length;
+    $("#cute-saying").html(cuteStuff[i]);
+  });
+
+
 
 </script>
