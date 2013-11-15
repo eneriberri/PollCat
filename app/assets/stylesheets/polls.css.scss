@@ -2,7 +2,6 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-
 .square {
 	height: 40px;
 	width: 40px;
@@ -10,6 +9,11 @@
   text-align: center;
   float: left;
   font-weight: bold;
+}
+
+body {
+  background-image: url(/assets/skyyy_merged.png);
+  background-repeat:repeat-x;
 }
 
 .noshadow {

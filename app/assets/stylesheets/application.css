@@ -18,6 +18,11 @@
   box-shadow: none !important;
 }
 
+.body {
+  background-image: url(/assets/skyyy_merged.png);
+  background-repeat:repeat-x;
+}
+
 /** {
   margin: 0;
 }
