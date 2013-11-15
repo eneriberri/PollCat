@@ -8,8 +8,10 @@ window.PollCatApp = {
     PollCatApp.votes = new PollCatApp.Collections.Votes();
     PollCatApp.users = new PollCatApp.Collections.Users();
 
-    PollCatApp.COLORS = ["#C3E86B", "#FF4242", "#E1EDB9", "#00B4FF", "#4c4c4c",
-                         "#FA6900", "#9DE0AD", "#69D2E7", "#D34017"];
+    PollCatApp.COLORS = ["#C3E86B", "#FF4242", "#6fc69c", "#00B4FF", "#4c4c4c", //"#E1EDB9"
+                         "#FA6900", "#9DE0AD", "#69D2E7", "#D34017", "#D9042B",
+                         "#9A46D9", "#9DD93E", "#B1CDED", "#459C7D", "#F4CB89",
+                         "#ED3388", "#F4CB31"];
 
     PollCatApp.polls.fetch({
       success: function() {

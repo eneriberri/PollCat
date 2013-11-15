@@ -19,8 +19,8 @@
 </div>
 
 <div class="row">
-  <div class="large-6 columns center"><canvas id="canvas-donut" height="300" width="300"></canvas></div>
-  <div class="large-6 columns center"><canvas id="canvas-pie" height="300" width="300"></canvas></div>
+  <div class="large-6 columns center donut"><canvas id="canvas-donut" height="300" width="300"></canvas></div>
+  <div class="large-6 columns center pie"><canvas id="canvas-pie" height="300" width="300"></canvas></div>
 </div>
 
 
@@ -87,43 +87,70 @@
 		var doughnutData = [
 				{
 					value: 30,
-					color: PollCatApp.COLORS[0] //"#F7464A"
+					color: "#1C1D21" //PollCatApp.COLORS[0]
 				},
 				{
 					value : 50,
-					color : PollCatApp.COLORS[1] //"#46BFBD"
+					color : "#31353D" //PollCatApp.COLORS[1]
 				},
 				{
 					value : 100,
-					color : PollCatApp.COLORS[2] // "#FDB45C"
+					color : "#445878" //PollCatApp.COLORS[2]
 				},
 				{
 					value : 50,
-					color : PollCatApp.COLORS[3] //"#949FB1"
+					color : "#92CDCF" //PollCatApp.COLORS[3]
 				},
 				{
 					value : 120,
-					color : PollCatApp.COLORS[5] //"#4D5360"
+					color : PollCatApp.COLORS[1] //PollCatApp.COLORS[5]
 				}
 
 			];
 
 	var myDoughnut = new Chart(document.getElementById("canvas-donut").getContext("2d")).Doughnut(doughnutData);
 
+  $('.donut').on('mouseenter', function() {
+    console.log("drawing");
+    var randIndex = Math.floor(Math.random()*PollCatApp.COLORS.length);
+
+    doughnutData.push({
+        value : Math.floor(Math.random()*120),
+        color : PollCatApp.COLORS[randIndex]
+      });
+
+    // $('.donut').html("<canvas id='canvas-donut' height='300' width='300'></canvas>");
+    new Chart(document.getElementById("canvas-donut").getContext("2d")).Doughnut(doughnutData);
+
+  });
+
+  $('.pie').on('mouseenter', function() {
+    console.log("drawing");
+    var randIndex = Math.floor(Math.random()*PollCatApp.COLORS.length);
+
+    pieData.push({
+        value : Math.floor(Math.random()*120),
+        color : PollCatApp.COLORS[randIndex]
+      });
+
+    // $('.donut').html("<canvas id='canvas-donut' height='300' width='300'></canvas>");
+    new Chart(document.getElementById("canvas-pie").getContext("2d")).Pie(pieData);
+
+  });
 
 
   var pieData = [
   				{
   					value: 30,
-  					color:"#F38630"
+  					color: "#647678"
   				},
   				{
   					value : 50,
-  					color : "#E0E4CC"
+  					color : "#2F3738"
   				},
   				{
   					value : 100,
-  					color : "#69D2E7"
+  					color : "#4FC0CC"
   				}
 
   			];
