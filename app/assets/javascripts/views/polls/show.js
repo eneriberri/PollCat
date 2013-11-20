@@ -9,8 +9,8 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     "click .edit": "editPoll",
     "click .save": "savePoll",
     "click .hidden-delete": "deletePoll",
-    "click .disabled": "disabledToolTip",
-    "mouseenter #myChart": "renderChart",
+    "click .disabled": "disabledToolTip"
+    // "mouseenter #myChart": "renderChart",
   },
 
   render: function() {
