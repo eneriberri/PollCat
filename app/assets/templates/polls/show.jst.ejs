@@ -106,7 +106,8 @@
     };
 
     var ctx = $("#myChart").get(0).getContext("2d");
-    var myPie = new Chart(ctx).Pie(pieData);
+    var myPie = new Chart(ctx).Pie(pieData, 
+	  							{ animationEasing : "easeOutQuart" }));
   });
 
   $('.close-modal').on('click', function() { $('a.close-reveal-modal').trigger('click') });
