@@ -30,7 +30,8 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     var votes = this.collection.where({ poll_id: parseInt(this.id) });
     if(_.keys(this.voteFreq).length === 0) {
       var ctxInitial = this.$el.find('#myChart').get(0).getContext("2d");
-      new Chart(ctxInitial).Pie([{ value: 1, color: "#000000" }]);
+      new Chart(ctxInitial).Pie([{ value: 1, color: "#000000" }], 
+	  							{ animationEasing : "easeOutQuart" });
     }
     else {
       var pieData = [];
@@ -40,7 +41,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
         pieData.push({ value: freq, color: PollCatApp.COLORS[i] });
       }
       var ctx = this.$el.find('#myChart').get(0).getContext("2d");
-      new Chart(ctx).Pie(pieData);
+      new Chart(ctx).Pie(pieData, { animationEasing : "easeOutQuart" });
     }
   },
 
