@@ -114,7 +114,12 @@ var doughnutData = [
 	var myDoughnut = new Chart(document.getElementById("canvas-donut").getContext("2d")).Doughnut(doughnutData);
 
   //set interval for donut
-  setInterval(function() {
+  var timesRunDonut = 1;
+  var donutInterval = setInterval(function() {
+    timesRunDonut += 1;
+    if(timesRunDonut === 15){
+        clearInterval(donutInterval);
+    }
   			var path = Math.floor((Math.random()*10)+1);
   			if (path > 4) {
   				var randIndex = Math.floor(Math.random() * doughnutData.length);
@@ -143,7 +148,12 @@ var doughnutData = [
 
 
     //set interval for pie
-    setInterval(function() {
+    var timesRunPie = 1;
+    var pieInterval = setInterval(function() {
+      timesRunPie += 1;
+      if(timesRunPie === 15){
+          clearInterval(pieInterval);
+      }
     			var path = Math.floor((Math.random()*30)+1);
     			if (path > 4) {
     				var randIndex = Math.floor(Math.random() * pieData.length);
@@ -169,20 +179,6 @@ var doughnutData = [
     					animateRotate : true
     				});
     		}, 5000);
-
-  // $('.pie').on('mouseenter', function() {
-  //   console.log("drawing");
-  //   var randIndex = Math.floor(Math.random()*PollCatApp.COLORS.length);
-  //
-  //   pieData.push({
-  //       value : Math.floor(Math.random()*120),
-  //       color : PollCatApp.COLORS[randIndex]
-  //     });
-  //
-  //   // $('.donut').html("<canvas id='canvas-donut' height='300' width='300'></canvas>");
-  //   new Chart(document.getElementById("canvas-pie").getContext("2d")).Pie(pieData);
-  //
-  // });
 
 
   var pieData = [
