@@ -11,8 +11,7 @@ PollCatApp.Routers.PollRouter = Backbone.Router.extend({
 
   index: function() {
     var indexView = new PollCatApp.Views.PollIndex( { collection: PollCatApp.polls } );
-    // this.$rootEl.html(indexView.render().$el);
-	this._swapView(indexView);
+    this._swapView(indexView);
   },
 
   show: function(id) {
@@ -33,14 +32,12 @@ PollCatApp.Routers.PollRouter = Backbone.Router.extend({
                                                     voteFreq: vote_freq,
                                                     id: id } );
 
-    // this.$rootEl.html(showView.render().$el);
-	this._swapView(showView);
+    this._swapView(showView);
   },
 
   new: function() {
     var newView = new PollCatApp.Views.PollNew();
-    // this.$rootEl.html(newView.render().$el);
-	this._swapView(newView);
+	  this._swapView(newView);
   },
   
   _swapView: function(newView) {

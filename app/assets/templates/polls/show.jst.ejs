@@ -91,8 +91,7 @@
   var pusher = new Pusher('280047e8dcfd93f78f89');
   var channel = pusher.subscribe('vote_channel');
   
-  var ctx = $("#myChart").get(0).getContext("2d");
-  var myPie = new Chart(ctx);
+
 
   //draw chart on a new vote
   channel.bind('new_vote', function(data) {
@@ -108,7 +107,8 @@
       pieData.push({ value: data.votes[i+1], color: PollCatApp.COLORS[i] });
     };
 
-    
+    var ctx = $("#myChart").get(0).getContext("2d");
+    var myPie = new Chart(ctx);
     myPie.Pie(pieData, { animationEasing : "easeOutQuart" });
   });
 

@@ -12,8 +12,13 @@
 }
 
 .homepage {
-  background-image: url(/assets/skyyy_merged.png);
-  background-repeat:repeat-x;
+//  background-image: url(/assets/skyyy_merged.png);
+//  background-repeat:repeat-x;
+  background: url(/assets/poll_cat_bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .noshadow {
@@ -55,4 +60,5 @@ ul.signupinfo li {
 
 .blkquote {
   padding-left: 30px;
+  color: #333333;
 }
