@@ -9,8 +9,8 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     "click .edit": "editPoll",
     "click .save": "savePoll",
     "click .hidden-delete": "deletePoll",
-    "click .disabled": "disabledToolTip"
-    // "mouseenter #myChart": "renderChart",
+    "click .disabled": "disabledToolTip",
+    "mouseenter #myChart": "renderChart",
   },
 
   render: function() {
@@ -20,7 +20,10 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
 
     this.$el.html(renderedHTML);
     this.toggleAuthorButtons();
+    
     //draws initial chart and on refresh
+    this.ctx = this.$el.find('#myChart').get(0).getContext("2d");
+    this.chartPie = new Chart(this.ctx);
     this.renderChart();
 
     return this;
@@ -29,8 +32,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   renderChart: function() {
     var votes = this.collection.where({ poll_id: parseInt(this.id) });
     if(_.keys(this.voteFreq).length === 0) {
-      var ctxInitial = this.$el.find('#myChart').get(0).getContext("2d");
-      new Chart(ctxInitial).Pie([{ value: 1, color: "#000000" }], 
+      this.chartPie.Pie([{ value: 1, color: "#000000" }], 
 	  							{ animationEasing : "easeOutQuart" });
     }
     else {
@@ -40,8 +42,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
         var freq = typeof this.voteFreq[i+1] !== 'undefined' ? this.voteFreq[i+1] : 0;
         pieData.push({ value: freq, color: PollCatApp.COLORS[i] });
       }
-      var ctx = this.$el.find('#myChart').get(0).getContext("2d");
-      new Chart(ctx).Pie(pieData, { animationEasing : "easeOutQuart" });
+      this.chartPie.Pie(pieData, { animationEasing : "easeOutQuart" });
     }
   },
 
