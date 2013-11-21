@@ -21,6 +21,8 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     this.$el.html(renderedHTML);
     this.toggleAuthorButtons();
     //draws initial chart and on refresh
+    var ctx = this.$el.find('#myChart').get(0).getContext("2d");
+    this.myPie = new Chart(ctx)
     this.renderChart();
 
     return this;
@@ -40,8 +42,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
         var freq = typeof this.voteFreq[i+1] !== 'undefined' ? this.voteFreq[i+1] : 0;
         pieData.push({ value: freq, color: PollCatApp.COLORS[i] });
       }
-      var ctx = this.$el.find('#myChart').get(0).getContext("2d");
-      new Chart(ctx).Pie(pieData, { animationEasing : "easeOutQuart" });
+      this.myPie.Pie(pieData, { animationEasing : "easeOutQuart" });
     }
   },
 
