@@ -109,10 +109,12 @@ var doughnutData = [
 				}
 
 			];
+      
+      
+  var donutContext = document.getElementById("canvas-donut").getContext("2d");
+  var chartDonut = new Chart(donutContext);
 
-
-	var myDoughnut = new Chart(document.getElementById("canvas-donut").getContext("2d")).Doughnut(doughnutData);
-
+  chartDonut.Doughnut(doughnutData, { animationEasing : "easeOutQuart" });
   //set interval for donut
   var timesRunDonut = 1;
   var donutInterval = setInterval(function() {
@@ -136,17 +138,14 @@ var doughnutData = [
   				)
   			}
 
-  			new Chart(document.getElementById("canvas-donut").getContext("2d")).Doughnut(doughnutData,
-  				{
-  					animation : true,
-  					animationSteps : 100,
-  					animationEasing : "easeOutQuart", //"easeOutCirc",
-  					segmentStrokeColor : "#fff",
-  					animateRotate : true
-  				});
+  			chartDonut.Doughnut(doughnutData, { animationEasing : "easeOutQuart" });
   		}, 6000);
 
 
+
+    var pieContext = document.getElementById("canvas-pie").getContext("2d");
+		var chartPie = new Chart(pieContext);
+    
     //set interval for pie
     var timesRunPie = 1;
     var pieInterval = setInterval(function() {
@@ -169,15 +168,8 @@ var doughnutData = [
     					}
     				)
     			}
-
-    			new Chart(document.getElementById("canvas-pie").getContext("2d")).Pie(pieData,
-    				{
-    					animation : true,
-    					animationSteps : 100,
-    					animationEasing : "easeOutQuart", //"easeOutCirc",
-    					segmentStrokeColor : "#fff",
-    					animateRotate : true
-    				});
+          
+          chartPie.Pie(pieData, { animationEasing : "easeOutQuart" });
     		}, 5000);
 
 
@@ -196,6 +188,6 @@ var doughnutData = [
   				}
 
   			];
-
-  	var myPie = new Chart(document.getElementById("canvas-pie").getContext("2d")).Pie(pieData);
+        
+        chartPie.Pie(pieData, { animationEasing : "easeOutQuart" });
 </script>
