@@ -47,6 +47,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   },
 
   editPoll: function(event) {
+    event.preventDefault();
     if(event.target.className.indexOf('disabled') === -1) {
       this.editQues();
       this.editAnswers();
@@ -117,6 +118,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   },
 
   savePoll: function(event) {
+    event.preventDefault();
     var $btn = $(".save");
     $btn.text("Edit Poll");
     $btn.removeClass('success save').addClass('edit');
@@ -167,7 +169,8 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     });
   },
 
-  deletePoll: function() {
+  deletePoll: function(event) {
+    event.preventDefault();
     this.model.destroy();
     Backbone.history.navigate('/', {trigger: true});
   },
@@ -187,6 +190,7 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
   },
 
   disabledToolTip: function(event) {
+    event.preventDefault();
     var msg = "<span data-tooltip class='has-tip'" +
               "title='Action enabled only for poll author. Sorry :3'></span>"
     $(event.target).wrap(msg);
