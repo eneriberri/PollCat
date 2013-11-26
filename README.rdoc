@@ -1,6 +1,18 @@
-== POLL CAT
+#POLL CAT
+A live polling web application that interacts with mobile devices. Use your own phone to text in a vote and see realtime data graphically render instantly.
 
-A live polling web application built with Rails and Backbone.js
+http://pollcat.me
 
-+ Graphically renders realtime data received through SMS. 
-+ Integrates Twilio API, Pusher API.
+![alt tag](/assets/pollcatscreenshot.png)
+
+##Tech Stack
+Frontend
+* Javascript/jQuery
+* Backbone.js
+
+Backend
+* Rails
+* Websockets
+* Twilio API
+
+![alt tag](/assets/pollcat_poll.png)
