@@ -4,7 +4,6 @@ A live polling web application that interacts with mobile devices. Use your own 
 http://pollcat.me
 
 ![ScreenShot](/app/assets/images/pollcatscreenshot.png)
-![Alt text](/path/to/img.jpg "Optional title")
 
 == Tech Stack
 Frontend
