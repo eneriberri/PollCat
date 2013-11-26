@@ -17,3 +17,5 @@ Backend
 * Websockets
 * Twilio API
 
+![ScreenShot](/app/assets/images/pollcat_poll.png)
+
