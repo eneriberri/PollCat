@@ -13,7 +13,6 @@ class PollsController < ApplicationController
     @poll = Poll.new(params[:poll])
     @poll.answers.new(params[:answers].values)
     if @poll.save
-      #render :json => @poll
       redirect_to "#/polls/#{@poll.id}"
     else
       render :json => @poll.errors.full_messages

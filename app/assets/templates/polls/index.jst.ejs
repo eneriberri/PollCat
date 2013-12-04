@@ -27,7 +27,6 @@
 
 <div class="row">
   <br><p></p>
-  <!-- <br><p></p> -->
   <div class="large-6 columns">
     <div class="panel radius">
       <h3>How Poll Cat works</h3>
@@ -65,13 +64,6 @@
 
 </div>
 
-<!-- <div class="colored-container">
-  <p></p>
-  EH?
-  <p></p>
-</div> -->
-
-
 <div class="row">
   <div class="text-center">
     <hr>
@@ -83,111 +75,111 @@
 </div>
 </div>
 
-
-
+  
 <script>
-var doughnutData = [
-				{
-					value: 30,
-					color: "#E6E2AF" //PollCatApp.COLORS[0] //"#F7464A"
-				},
-				{
-					value : 50,
-					color : "#A7A37E" //PollCatApp.COLORS[1] //"#46BFBD"
-				},
-				{
-					value : 100,
-					color : "#EFECCA" //PollCatApp.COLORS[2] // "#FDB45C"
-				},
-				{
-					value : 50,
-					color : "#046380" //PollCatApp.COLORS[3] //"#949FB1"
-				},
-				{
-					value : 120,
-					color : "#002F2F" //PollCatApp.COLORS[5] //"#4D5360"
-				}
+var doughnutData  = [
+{
+  value: 30,
+  color: "#E6E2AF" 
+},
+{
+  value : 50,
+  color : "#A7A37E" 
+},
+{
+  value : 100,
+  color : "#EFECCA" 
+},
+{
+  value : 50,
+  color : "#046380" 
+},
+{
+  value : 120,
+  color : "#002F2F" 
+}
 
-			];
+];
       
       
-  var donutContext = document.getElementById("canvas-donut").getContext("2d");
-  var chartDonut = new Chart(donutContext);
+var donutContext  = document.getElementById("canvas-donut").getContext("2d");
+var chartDonut    = new Chart(donutContext);
+
+chartDonut.Doughnut(doughnutData, { animationEasing : "easeOutQuart" });
+//set interval for donut
+var timesRunDonut = 1;
+var donutInterval = setInterval(function() {
+  timesRunDonut += 1;
+  if(timesRunDonut === 15) {
+    clearInterval(donutInterval);
+  }
+  var path        = Math.floor((Math.random()*10)+1);
+  if (path > 4) {
+    var randIndex = Math.floor(Math.random() * doughnutData.length);
+    doughnutData[randIndex].value += 20;
+  }
+
+  else {
+    var randIndex = Math.floor(Math.random()*PollCatApp.COLORS.length);
+    doughnutData.push(
+      {
+        value : 50,
+        color : PollCatApp.COLORS[randIndex]
+      }
+    )
+  }
 
   chartDonut.Doughnut(doughnutData, { animationEasing : "easeOutQuart" });
-  //set interval for donut
-  var timesRunDonut = 1;
-  var donutInterval = setInterval(function() {
-    timesRunDonut += 1;
-    if(timesRunDonut === 15){
-        clearInterval(donutInterval);
-    }
-  			var path = Math.floor((Math.random()*10)+1);
-  			if (path > 4) {
-  				var randIndex = Math.floor(Math.random() * doughnutData.length);
-  				doughnutData[randIndex].value += 20;
-  			}
-
-  			else {
-          var randIndex = Math.floor(Math.random()*PollCatApp.COLORS.length);
-  				doughnutData.push(
-  					{
-  						value : 50,
-  						color : PollCatApp.COLORS[randIndex]
-  					}
-  				)
-  			}
-
-  			chartDonut.Doughnut(doughnutData, { animationEasing : "easeOutQuart" });
-  		}, 6000);
+}, 6000);
 
 
 
-    var pieContext = document.getElementById("canvas-pie").getContext("2d");
-		var chartPie = new Chart(pieContext);
+var pieContext    = document.getElementById("canvas-pie").getContext("2d");
+var chartPie      = new Chart(pieContext);
     
-    //set interval for pie
-    var timesRunPie = 1;
-    var pieInterval = setInterval(function() {
-      timesRunPie += 1;
-      if(timesRunPie === 15){
-          clearInterval(pieInterval);
+//set interval for pie
+var timesRunPie   = 1;
+var pieInterval   = setInterval(function() {
+  timesRunPie += 1;
+  if(timesRunPie === 15) {
+    clearInterval(pieInterval);
+  }
+  var path        = Math.floor((Math.random()*30)+1);
+  if (path > 4) {
+    var randIndex = Math.floor(Math.random() * pieData.length);
+    pieData[randIndex].value += 20;
+  }
+
+  else {
+    var randIndex = Math.floor(Math.random()*PollCatApp.COLORS.length);
+    pieData.push(
+      {
+        value : Math.floor((Math.random()*10)+1),
+        color : PollCatApp.COLORS[randIndex]
       }
-    			var path = Math.floor((Math.random()*30)+1);
-    			if (path > 4) {
-    				var randIndex = Math.floor(Math.random() * pieData.length);
-    				pieData[randIndex].value += 20;
-    			}
-
-    			else {
-            var randIndex = Math.floor(Math.random()*PollCatApp.COLORS.length);
-    				pieData.push(
-    					{
-    						value : Math.floor((Math.random()*10)+1),
-    						color : PollCatApp.COLORS[randIndex]
-    					}
-    				)
-    			}
+    )
+  }
           
-          chartPie.Pie(pieData, { animationEasing : "easeOutQuart" });
-    		}, 5000);
+  chartPie.Pie(pieData, { animationEasing : "easeOutQuart" });
+}, 5000);
 
 
-  var pieData = [
-  				{
-  					value: 30,
-  					color:"#FCFFF5"
-  				},
-  				{
-  					value : 50,
-  					color : "#D1DBBD"
-  				},
-  				{
-  					value : 100,
-  					color : "#91AA9D"
-  				}
+var pieData       = [
+{
+  value: 30,
+  color:"#FCFFF5"
+},
+{
+  value : 50,
+  color : "#D1DBBD"
+},
+{
+  value : 100,
+  color : "#91AA9D"
+}
 
-  			];
+];
         
-        chartPie.Pie(pieData, { animationEasing : "easeOutQuart" });
+chartPie.Pie(pieData, { animationEasing : "easeOutQuart" });
+
 </script>

@@ -42,6 +42,7 @@ PollCatApp.Routers.PollRouter = Backbone.Router.extend({
   
   _swapView: function(newView) {
 	  if(this._prevView) {
+      //want to remove any event handlers connected to old views
 		  this._prevView.remove();
 	  }
   

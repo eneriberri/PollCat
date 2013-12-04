@@ -10,7 +10,6 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
     "click .save": "savePoll",
     "click .hidden-delete": "deletePoll",
     "click .disabled": "disabledToolTip"
-    // "mouseenter #myChart": "renderChart",
   },
 
   render: function() {
@@ -101,11 +100,6 @@ PollCatApp.Views.PollShow = Backbone.View.extend({
         currentAnswer = that.answerTrim(currentAnswer);
         var input = "<input name='answer[body]' placeholder='"
                     + currentAnswer + "' class='poll-edit-answer'></input>";
-        // $(".poll-edit-answer").wrap(msg);
-        // if(triggerOnce) {
-        //   $(".poll-edit-answer").trigger("mouseover"); //trigger tooltip
-        //   triggerOnce = false;
-        // }
 
         $(answer).replaceWith(input);
      }

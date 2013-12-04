@@ -45,12 +45,6 @@
       </ul>
 
       <section class="top-bar-section">
-        <!-- Left Nav Section -->
-        <!-- <ul class="left">
-          <li class="divider"></li>
-          <li><a href="#"></a></li>
-        </ul> -->
-
         <!-- Right Nav Section -->
         <ul class="right">
           <li class="divider"></li>
@@ -79,7 +73,6 @@
               <li><a href="/users/<%= current_user.id %>"><%= current_user.username %></a></li>
               <li class="divider"></li>
               <li><%= link_to "Sign Out", session_url, :method => :delete %></li>
-              <!-- <li><a href="/users/<%= session_url %>">Sign Out</a></li> -->
             <% end %>
         </ul>
 
@@ -92,14 +85,6 @@
       <%= yield %>
         <div class="push"></div>
     </div>
-
-    <!-- <div class="footer">
-      <div class="text-center">
-        <h6 class="subheader footer"><i>Poll Cat &copy; 2013
-        <br>
-        <a class="footer" href="#">Irene Nguyen</a></i></h6>
-      </div>
-    </div> -->
 
 
     <%= javascript_include_tag "application" %>

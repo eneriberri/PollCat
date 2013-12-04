@@ -37,7 +37,7 @@ class VotesController < ApplicationController
     #msg-1 is the index of the answer to this poll
     answers[msg-1].update_attributes({ count: answers[msg-1].count += 1 })
   end
-
+  
   def txt_valid?(msg, poll_id)
     poll_ids = Poll.all.map { |poll| poll.id }
     return false unless poll_ids.include?(poll_id.to_i)
